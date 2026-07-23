@@ -7,7 +7,6 @@
     "not_found_handling": "single-page-application"
   },
   "routes": [
-    { "pattern": "gravit.design", "custom_domain": true },
-    { "pattern": "www.gravit.design", "custom_domain": true }
+    { "pattern": "gravit.design", "custom_domain": true }
   ]
 }
