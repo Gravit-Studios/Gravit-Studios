@@ -1,24 +1,37 @@
-// Marca o passo ativo da estratégia conforme ele cruza a faixa central da
-// viewport durante o scroll, e revela o conteúdo correspondente no painel.
-// Clicar num item também ativa (e rola até) o passo escolhido.
+// Marca o bloco de narrativa ativo conforme cruza a faixa central da
+// viewport durante o scroll, destaca a camada correspondente na montagem
+// (efeito de "aproximação") e atualiza o rótulo lateral que a acompanha.
 export function initStrategyScroll(root) {
   const items = Array.from(root.querySelectorAll('[data-strategy-item]'));
-  const panels = Array.from(root.querySelectorAll('.strategy__panel-item'));
+  const layers = Array.from(root.querySelectorAll('[data-layer]'));
+  const labelTag = root.querySelector('[data-label-tag]');
+  const labelTitle = root.querySelector('[data-label-title]');
 
-  if (!items.length || !panels.length) return;
+  if (!items.length) return;
 
   function setActive(index) {
     items.forEach((item, i) => item.classList.toggle('is-active', i === index));
-    panels.forEach((panel, i) => {
-      panel.classList.toggle('is-active', i === index);
-      panel.setAttribute('aria-hidden', String(i !== index));
-    });
+    layers.forEach((layer, i) => layer.classList.toggle('is-active', i === index));
+
+    const active = items[index];
+    if (labelTag) labelTag.textContent = active.dataset.tag || '';
+    if (labelTitle) {
+      labelTitle.textContent = active.querySelector('.strategy__block-title')?.textContent ?? '';
+    }
   }
 
   items.forEach((item, index) => {
-    item.addEventListener('click', () => {
+    const activate = () => {
       setActive(index);
       item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    };
+
+    item.addEventListener('click', activate);
+    item.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        activate();
+      }
     });
   });
 
@@ -34,4 +47,5 @@ export function initStrategyScroll(root) {
   );
 
   items.forEach((item) => observer.observe(item));
+  setActive(0);
 }

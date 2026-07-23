@@ -31,9 +31,15 @@
 // Seção em destaque — usa a cor secundária como background (30% da composição).
 .section--highlight {
   background-color: var(--surface-highlight);
+  color: var(--text-on-inverse);
+
+  .section__title,
+  .section__lead {
+    color: var(--text-on-inverse);
+  }
 
   .section__eyebrow {
-    color: var(--color-secondary-700);
+    color: var(--color-secondary-300);
   }
 }
 

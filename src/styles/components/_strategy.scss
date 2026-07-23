@@ -14,151 +14,198 @@
   align-items: start;
 
   @include breakpoint-up(lg) {
-    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
     gap: $space-800;
   }
 }
 
-// Lista de passos — o item ativo é marcado conforme o scroll (ver strategy-scroll.js).
-.strategy__list {
+// Narrativa — texto solto, sem caixas; o passo ativo se destaca do resto.
+.strategy__narrative {
   display: flex;
   flex-direction: column;
-  gap: $space-400;
+  gap: $space-800;
 }
 
-.strategy__item {
+.strategy__block {
   display: flex;
-  align-items: flex-start;
-  gap: $space-400;
-  padding: $space-500;
+  flex-direction: column;
+  gap: $space-200;
+  width: 100%;
   text-align: left;
-  border-radius: $radius-md;
-  border: 1px solid var(--border-subtle);
-  background-color: var(--surface-base);
-  transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+  padding-left: $space-500;
+  border-left: 2px solid var(--border-subtle);
+  opacity: 0.4;
+  filter: saturate(0.6);
+  transition: opacity 0.4s ease, border-color 0.4s ease, filter 0.4s ease;
 
   &-index {
     font-family: var(--font-family-heading);
-    font-size: $font-size-500;
+    font-size: $font-size-300;
     font-weight: $font-weight-semibold;
-    color: var(--border-strong);
-    transition: color 0.3s ease;
-  }
-
-  &-body {
-    display: flex;
-    flex-direction: column;
-    gap: $space-200;
+    color: var(--color-primary-400);
   }
 
   &-title {
-    font-weight: $font-weight-semibold;
-    font-size: $font-size-400;
-    color: var(--text-primary);
+    font-size: $font-size-600;
   }
 
   &-text {
-    font-size: $font-size-200;
-    color: var(--text-secondary);
+    max-width: 42ch;
+  }
+
+  &-list {
+    display: flex;
+    flex-direction: column;
+    gap: $space-200;
+    margin-top: $space-200;
+
+    li {
+      position: relative;
+      padding-left: $space-500;
+      color: var(--text-secondary);
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.5em;
+        width: 0.4rem;
+        height: 0.4rem;
+        border-radius: $radius-full;
+        background-color: var(--color-primary-500);
+      }
+    }
   }
 
   &.is-active {
+    opacity: 1;
+    filter: saturate(1);
     border-color: var(--color-primary-500);
-    background-color: var(--surface-base);
-    box-shadow: $shadow-md;
-    transform: translateX($space-100);
-
-    .strategy__item-index {
-      color: var(--color-primary-500);
-    }
   }
+
+  @include focus-ring;
 }
 
-// Painel lateral — sticky, revela o conteúdo do passo ativo com cross-fade.
-.strategy__panel {
-  position: relative;
-  min-height: 22rem;
+// Montagem em camadas — quadrados empilhados que se destacam conforme o
+// passo ativo, ligados por uma linha tracejada, com um rótulo lateral que
+// acompanha o conteúdo do passo em foco.
+.strategy__stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-600;
+  padding-block: $space-700;
 
   @include breakpoint-up(lg) {
     position: sticky;
     top: 6rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: $space-700;
   }
 }
 
-.strategy__panel-item {
-  display: none;
-  padding: $space-600;
-  border-radius: $radius-lg;
-  background-color: var(--surface-base);
-  border: 1px solid var(--border-subtle);
+.strategy__stack-visual {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-700;
+  flex: 0 0 auto;
+}
 
-  &.is-active {
-    display: block;
+.strategy__stack-line {
+  position: absolute;
+  top: $space-700;
+  bottom: $space-700;
+  left: 50%;
+  width: 0;
+  border-left: 1px dashed var(--border-strong);
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+.strategy__layer {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 7.5rem;
+  height: 7.5rem;
+  border-radius: $radius-lg;
+  background: linear-gradient(160deg, rgba($color-white, 0.06), rgba($color-white, 0.02));
+  border: 1px solid var(--border-subtle);
+  backdrop-filter: blur(6px);
+  opacity: 0.45;
+  transform: scale(0.9);
+  transition: opacity 0.4s ease, transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+
+  &-index {
+    font-family: var(--font-family-heading);
+    font-size: $font-size-600;
+    font-weight: $font-weight-semibold;
+    color: rgba($color-white, 0.5);
   }
 
-  @include breakpoint-up(lg) {
-    display: block;
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transform: translateY(0.75rem);
-    pointer-events: none;
-    transition: opacity 0.5s ease, transform 0.5s ease;
+  &.is-active {
+    opacity: 1;
+    transform: scale(1.08);
+    border-color: var(--color-primary-500);
+    box-shadow: 0 0 0 1px rgba($color-primary-500, 0.3), 0 20px 40px rgba($color-primary-900, 0.5);
 
-    &.is-active {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-      position: relative;
+    .strategy__layer-index {
+      color: var(--color-primary-300);
     }
   }
 }
 
-.strategy__panel-tag {
-  display: inline-block;
-  margin-bottom: $space-300;
+.strategy__stack-label {
+  display: flex;
+  flex-direction: column;
+  gap: $space-100;
+  text-align: center;
+  min-width: 0;
+
+  @include breakpoint-up(lg) {
+    flex: 1 1 auto;
+    max-width: 16rem;
+    text-align: left;
+  }
+}
+
+.strategy__stack-connector {
+  display: none;
+
+  @include breakpoint-up(lg) {
+    display: block;
+    width: $space-600;
+    height: 1px;
+    margin-bottom: $space-200;
+    background-color: var(--border-strong);
+  }
+}
+
+.strategy__stack-tag {
   font-size: $font-size-200;
   font-weight: $font-weight-semibold;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-primary-600);
+  color: var(--color-primary-300);
 }
 
-.strategy__panel-title {
-  margin-bottom: $space-300;
-  font-size: $font-size-600;
-}
-
-.strategy__panel-text {
-  margin-bottom: $space-400;
-}
-
-.strategy__panel-list {
-  display: flex;
-  flex-direction: column;
-  gap: $space-200;
-
-  li {
-    position: relative;
-    padding-left: $space-500;
-    color: var(--text-secondary);
-
-    &::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0.5em;
-      width: 0.4rem;
-      height: 0.4rem;
-      border-radius: $radius-full;
-      background-color: var(--color-primary-500);
-    }
-  }
+.strategy__stack-title {
+  font-family: var(--font-family-heading);
+  font-size: $font-size-400;
+  font-weight: $font-weight-semibold;
+  color: var(--text-primary);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .strategy__item,
-  .strategy__panel-item {
+  .strategy__block,
+  .strategy__layer {
     transition: none;
   }
 }

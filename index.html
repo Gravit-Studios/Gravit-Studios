@@ -146,90 +146,83 @@
         </div>
 
         <div class="strategy__layout section__inner">
-          <div class="strategy__list" data-strategy-list>
-            <button class="strategy__item is-active" type="button" data-strategy-item>
-              <span class="strategy__item-index">01</span>
-              <span class="strategy__item-body">
-                <span class="strategy__item-title">Diagnóstico gravitacional</span>
-                <span class="strategy__item-text">Entendemos seu negócio, seu público e sua concorrência antes de desenhar qualquer tela.</span>
-              </span>
-            </button>
-            <button class="strategy__item" type="button" data-strategy-item>
-              <span class="strategy__item-index">02</span>
-              <span class="strategy__item-body">
-                <span class="strategy__item-title">Direção de design</span>
-                <span class="strategy__item-text">Construímos a identidade visual e o design system que vão sustentar toda a experiência.</span>
-              </span>
-            </button>
-            <button class="strategy__item" type="button" data-strategy-item>
-              <span class="strategy__item-index">03</span>
-              <span class="strategy__item-body">
-                <span class="strategy__item-title">Desenvolvimento orbital</span>
-                <span class="strategy__item-text">Colocamos o projeto em órbita: site ou LP rápidos, acessíveis e prontos para converter.</span>
-              </span>
-            </button>
-            <button class="strategy__item" type="button" data-strategy-item>
-              <span class="strategy__item-index">04</span>
-              <span class="strategy__item-body">
-                <span class="strategy__item-title">Otimização contínua</span>
-                <span class="strategy__item-text">Acompanhamos métricas reais e ajustamos o design para manter a atração ao longo do tempo.</span>
-              </span>
-            </button>
-          </div>
-
-          <div class="strategy__panel" data-strategy-panel>
-            <div class="strategy__panel-item is-active" aria-hidden="false">
-              <span class="strategy__panel-tag">Passo 01</span>
-              <h3 class="strategy__panel-title">Diagnóstico gravitacional</h3>
-              <p class="strategy__panel-text">
+          <div class="strategy__narrative" data-strategy-list>
+            <div class="strategy__block is-active" role="button" tabindex="0" data-strategy-item data-tag="Passo 01">
+              <span class="strategy__block-index">01</span>
+              <h3 class="strategy__block-title">Diagnóstico gravitacional</h3>
+              <p class="strategy__block-text">
                 Mapeamos o momento do seu negócio: objetivos, público-alvo,
                 concorrência e o que já funciona (ou não) na sua presença
                 digital atual.
               </p>
-              <ul class="strategy__panel-list">
+              <ul class="strategy__block-list">
                 <li>Briefing e imersão no negócio</li>
                 <li>Análise de concorrência e referências</li>
                 <li>Definição de metas de conversão</li>
               </ul>
             </div>
-            <div class="strategy__panel-item" aria-hidden="true">
-              <span class="strategy__panel-tag">Passo 02</span>
-              <h3 class="strategy__panel-title">Direção de design</h3>
-              <p class="strategy__panel-text">
+            <div class="strategy__block" role="button" tabindex="0" data-strategy-item data-tag="Passo 02">
+              <span class="strategy__block-index">02</span>
+              <h3 class="strategy__block-title">Direção de design</h3>
+              <p class="strategy__block-text">
                 Traduzimos o diagnóstico em identidade visual e num design
                 system com cores, tipografia e componentes consistentes.
               </p>
-              <ul class="strategy__panel-list">
+              <ul class="strategy__block-list">
                 <li>Paleta de cores e tipografia</li>
                 <li>Wireframes e protótipos navegáveis</li>
                 <li>Design system documentado</li>
               </ul>
             </div>
-            <div class="strategy__panel-item" aria-hidden="true">
-              <span class="strategy__panel-tag">Passo 03</span>
-              <h3 class="strategy__panel-title">Desenvolvimento orbital</h3>
-              <p class="strategy__panel-text">
+            <div class="strategy__block" role="button" tabindex="0" data-strategy-item data-tag="Passo 03">
+              <span class="strategy__block-index">03</span>
+              <h3 class="strategy__block-title">Desenvolvimento orbital</h3>
+              <p class="strategy__block-text">
                 Construímos o site, a landing page ou a apresentação com
                 performance, acessibilidade e padrões web de verdade.
               </p>
-              <ul class="strategy__panel-list">
+              <ul class="strategy__block-list">
                 <li>Front-end responsivo e acessível</li>
                 <li>Testes em múltiplos dispositivos</li>
                 <li>Integrações e formulários de contato</li>
               </ul>
             </div>
-            <div class="strategy__panel-item" aria-hidden="true">
-              <span class="strategy__panel-tag">Passo 04</span>
-              <h3 class="strategy__panel-title">Otimização contínua</h3>
-              <p class="strategy__panel-text">
+            <div class="strategy__block" role="button" tabindex="0" data-strategy-item data-tag="Passo 04">
+              <span class="strategy__block-index">04</span>
+              <h3 class="strategy__block-title">Otimização contínua</h3>
+              <p class="strategy__block-text">
                 Acompanhamos os resultados após o lançamento e ajustamos o
                 design com base em dados reais de comportamento.
               </p>
-              <ul class="strategy__panel-list">
+              <ul class="strategy__block-list">
                 <li>Acompanhamento de métricas</li>
                 <li>Testes A/B pontuais</li>
                 <li>Ajustes de design orientados por dados</li>
               </ul>
+            </div>
+          </div>
+
+          <div class="strategy__stack" data-strategy-panel>
+            <div class="strategy__stack-visual">
+              <div class="strategy__stack-line" aria-hidden="true"></div>
+              <div class="strategy__layer is-active" data-layer aria-hidden="true">
+                <span class="strategy__layer-index">01</span>
+              </div>
+              <div class="strategy__layer" data-layer aria-hidden="true">
+                <span class="strategy__layer-index">02</span>
+              </div>
+              <div class="strategy__layer" data-layer aria-hidden="true">
+                <span class="strategy__layer-index">03</span>
+              </div>
+              <div class="strategy__layer" data-layer aria-hidden="true">
+                <span class="strategy__layer-index">04</span>
+              </div>
+            </div>
+
+            <div class="strategy__stack-label" aria-hidden="true">
+              <span class="strategy__stack-connector" aria-hidden="true"></span>
+              <span class="strategy__stack-tag" data-label-tag>Passo 01</span>
+              <span class="strategy__stack-title" data-label-title>Diagnóstico gravitacional</span>
             </div>
           </div>
         </div>
