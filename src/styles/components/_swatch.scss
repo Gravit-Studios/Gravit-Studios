@@ -1,0 +1,61 @@
+@use "sass:math";
+@use "../abstracts" as *;
+@use "../abstracts/colors" as c;
+
+// Vitrine das paletas — componente de documentação do design system, não faz
+// parte da UI final do site. Gera os swatches diretamente dos mapas Sass para
+// garantir que a documentação nunca fique fora de sincronia com os tokens.
+.palette {
+  margin-top: $space-600;
+
+  &__name {
+    font-size: $font-size-400;
+    margin-bottom: $space-300;
+    text-transform: capitalize;
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: $space-200;
+    margin-bottom: $space-700;
+
+    @media (max-width: $breakpoint-md) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+.swatch {
+  border-radius: $radius-md;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  font-size: $font-size-100;
+
+  &__color {
+    height: 4.5rem;
+  }
+
+  &__meta {
+    padding: $space-200;
+    background-color: var(--surface-base);
+  }
+
+  &__step {
+    display: block;
+    font-weight: $font-weight-semibold;
+  }
+
+  &__hex {
+    display: block;
+    color: var(--text-muted);
+  }
+}
+
+@each $palette-name, $palette in c.$palettes {
+  @each $step, $value in $palette {
+    .swatch__color--#{$palette-name}-#{$step} {
+      background-color: #{$value};
+    }
+  }
+}

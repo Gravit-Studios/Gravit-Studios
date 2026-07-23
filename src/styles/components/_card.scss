@@ -1,0 +1,25 @@
+@use "../abstracts" as *;
+
+.card {
+  padding: $space-500;
+  border-radius: $radius-lg;
+  background-color: var(--surface-base);
+  border: 1px solid var(--border-subtle);
+  box-shadow: $shadow-sm;
+
+  &__title {
+    margin-bottom: $space-200;
+    font-size: $font-size-500;
+  }
+
+  &__text {
+    color: var(--text-secondary);
+  }
+}
+
+.card-grid {
+  display: grid;
+  gap: $space-500;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  margin-top: $space-700;
+}

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Gravit Studios — agência digital que atrai clientes com sites, landing pages, apresentações institucionais e consultoria estratégica."
+    />
+    <title>Gravit Studios — atraia clientes com gravidade</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Pular para o conteúdo</a>
+
+    <header class="header">
+      <div class="header__inner">
+        <span class="header__logo">Gravit<span class="header__logo-dot">.</span></span>
+        <nav class="header__nav" aria-label="Navegação principal">
+          <a class="header__link" href="#servicos">Serviços</a>
+          <a class="header__link" href="#sobre">Sobre</a>
+          <a class="header__link" href="#tokens">Design System</a>
+          <a class="header__link" href="#contato">Contato</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- HERO — fundo "espaço profundo" (neutro escuro, os 60%), CTA em cor primária (10%) -->
+      <section class="section section--inverse" aria-labelledby="hero-title">
+        <div class="section__inner">
+          <span class="section__eyebrow">Agência digital</span>
+          <h1 id="hero-title" class="section__title">
+            A gravidade atrai. O seu site também deveria.
+          </h1>
+          <p class="section__lead">
+            Criamos sites, landing pages, apresentações institucionais e
+            consultoria de design para negócios de pequeno e médio porte que
+            querem parar de competir por atenção — e começar a atrair clientes
+            por gravidade própria.
+          </p>
+          <div style="display:flex; gap: var(--space-400); margin-top: var(--space-600); flex-wrap: wrap;">
+            <a class="btn btn--primary" href="#contato">Quero atrair mais clientes</a>
+            <a class="btn btn--ghost" href="#servicos" style="color: var(--text-on-inverse); border-color: rgba(255,255,255,0.24);">Ver serviços</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVIÇOS — fundo claro (neutro, 60%), badges em terciária -->
+      <section class="section" id="servicos" aria-labelledby="servicos-title">
+        <div class="section__inner">
+          <span class="section__eyebrow">O que fazemos</span>
+          <h2 id="servicos-title" class="section__title">Órbitas de atuação</h2>
+          <p class="section__lead">
+            Cada projeto é uma órbita: um conjunto de entregas desenhado para
+            manter seu cliente girando ao seu redor.
+          </p>
+
+          <div class="card-grid">
+            <article class="card">
+              <span class="badge">Sites institucionais</span>
+              <h3 class="card__title" style="margin-top: var(--space-300);">Presença que gera confiança</h3>
+              <p class="card__text">Sites rápidos, acessíveis e estruturados para converter visitantes em contato.</p>
+            </article>
+            <article class="card">
+              <span class="badge">Landing pages</span>
+              <h3 class="card__title" style="margin-top: var(--space-300);">Foco total em conversão</h3>
+              <p class="card__text">LPs enxutas, com copy e design alinhados a um único objetivo de campanha.</p>
+            </article>
+            <article class="card">
+              <span class="badge">Apresentações</span>
+              <h3 class="card__title" style="margin-top: var(--space-300);">Institucional e comercial</h3>
+              <p class="card__text">Materiais que comunicam autoridade em reuniões e propostas comerciais.</p>
+            </article>
+            <article class="card">
+              <span class="badge">Consultoria</span>
+              <h3 class="card__title" style="margin-top: var(--space-300);">Estratégia + design</h3>
+              <p class="card__text">Diagnóstico de marca e experiência digital, com plano de ação priorizado.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO EM DESTAQUE — fundo em cor secundária (os 30%) -->
+      <section class="section section--highlight" id="sobre" aria-labelledby="sobre-title">
+        <div class="section__inner">
+          <span class="section__eyebrow">Nosso método</span>
+          <h2 id="sobre-title" class="section__title">Design com peso estratégico</h2>
+          <p class="section__lead">
+            Assim como a gravidade é proporcional à massa, a atração do seu
+            site é proporcional à consistência do seu design system: cores,
+            tipografia e componentes trabalhando como um único corpo.
+          </p>
+        </div>
+      </section>
+
+      <!-- VITRINE DO DESIGN SYSTEM — documentação viva das paletas -->
+      <section class="section" id="tokens" aria-labelledby="tokens-title">
+        <div class="section__inner">
+          <span class="section__eyebrow">Design System</span>
+          <h2 id="tokens-title" class="section__title">Paleta de cores</h2>
+          <p class="section__lead">
+            Escalas de 100 a 900, com 500 como cor base. Primária para CTAs e
+            destaques, secundária para subtítulos e fundos de seção,
+            terciária para badges e informações simples, e a escala neutra
+            sustentando 60% da composição.
+          </p>
+          <div id="palette-showcase"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="section section--inverse" id="contato">
+      <div class="section__inner">
+        <h2 class="section__title">Vamos colocar seu projeto em órbita?</h2>
+        <p class="section__lead">gravitstudios@gmail.com</p>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

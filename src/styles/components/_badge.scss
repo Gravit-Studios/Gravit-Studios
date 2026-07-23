@@ -1,0 +1,17 @@
+@use "../abstracts" as *;
+
+// Badge — cor terciária, reservada a infos simples e etiquetas de apoio.
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-100;
+  padding: $space-100 $space-400;
+  border-radius: $radius-full;
+  font-size: $font-size-100;
+  font-weight: $font-weight-medium;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  background-color: var(--badge-bg);
+  color: var(--badge-text);
+  border: 1px solid var(--badge-border);
+}

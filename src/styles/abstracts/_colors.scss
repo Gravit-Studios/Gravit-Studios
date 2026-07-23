@@ -1,0 +1,141 @@
+// =============================================================================
+// DESIGN TOKENS — CORES
+// Tema: Espaço / Galáxia / Gravidade.
+// Cada paleta de marca vai de 100 (mais clara) a 900 (mais escura); 500 é a cor base.
+// Uso pretendido (regra 60/30/10 de composição visual):
+//   60% neutra   (grayscale)      → fundos, texto, superfícies
+//   30% secundária (secondary)    → subtítulos, backgrounds de seções em destaque
+//   10% primária   (primary)      → CTAs e destaques pontuais (o "puxão gravitacional")
+//   terciária (tertiary) é um acento de apoio → badges e infos simples, sempre com uso comedido
+// =============================================================================
+
+// Primária — "Gravity Violet": força de atração, usada em CTAs e destaques.
+$color-primary-100: #f1e9fe;
+$color-primary-200: #dec9fc;
+$color-primary-300: #c6a3f9;
+$color-primary-400: #a873f3;
+$color-primary-500: #8347e8; // base
+$color-primary-600: #6b2fd1;
+$color-primary-700: #5324a8;
+$color-primary-800: #3d1b7d;
+$color-primary-900: #271252;
+
+// Secundária — "Nebula Cyan": subtítulos e backgrounds de seções em destaque.
+$color-secondary-100: #e3f6fb;
+$color-secondary-200: #b9e7f2;
+$color-secondary-300: #86d3e8;
+$color-secondary-400: #4fbbda;
+$color-secondary-500: #1f9dc4; // base
+$color-secondary-600: #167da0;
+$color-secondary-700: #10617d;
+$color-secondary-800: #0b475c;
+$color-secondary-900: #072f3c;
+
+// Terciária — "Stellar Gold": badges e informações de apoio, uso pontual.
+$color-tertiary-100: #fff7e0;
+$color-tertiary-200: #ffecb3;
+$color-tertiary-300: #ffdd80;
+$color-tertiary-400: #ffcc4d;
+$color-tertiary-500: #f5b324; // base
+$color-tertiary-600: #d9941a;
+$color-tertiary-700: #b37414;
+$color-tertiary-800: #8c580f;
+$color-tertiary-900: #663d0a;
+
+// Grayscale — "Deep Space": neutros com leve subtom azulado, base dos 60% da composição.
+$color-gray-100: #f5f6fa;
+$color-gray-200: #e6e8f0;
+$color-gray-300: #cbcedb;
+$color-gray-400: #a3a8bd;
+$color-gray-500: #767c97; // base
+$color-gray-600: #565c77;
+$color-gray-700: #3b3f57;
+$color-gray-800: #23263a;
+$color-gray-900: #0d0e1a; // "vazio do espaço", usado em backgrounds escuros
+
+// System — cores semânticas (feedback de estado). Escala reduzida (light/base/dark)
+// por serem funcionais, não identitárias — não competem com a paleta de marca.
+$color-success-light: #d6f5e3;
+$color-success-500: #2ea86f;
+$color-success-dark: #1d6e49;
+
+$color-warning-light: #fdf0d5;
+$color-warning-500: #e2a13d;
+$color-warning-dark: #96690f;
+
+$color-error-light: #fbe1e4;
+$color-error-500: #d94f5c;
+$color-error-dark: #8f2530;
+
+$color-info-light: #dfeaff;
+$color-info-500: #3f7de0;
+$color-info-dark: #24488f;
+
+// Base absolutos
+$color-white: #ffffff;
+$color-black: #000000;
+
+// -----------------------------------------------------------------------------
+// Mapas — usados para gerar variáveis CSS e para iteração em loops (ex.: showcase)
+// -----------------------------------------------------------------------------
+$palette-primary: (
+  100: $color-primary-100,
+  200: $color-primary-200,
+  300: $color-primary-300,
+  400: $color-primary-400,
+  500: $color-primary-500,
+  600: $color-primary-600,
+  700: $color-primary-700,
+  800: $color-primary-800,
+  900: $color-primary-900,
+);
+
+$palette-secondary: (
+  100: $color-secondary-100,
+  200: $color-secondary-200,
+  300: $color-secondary-300,
+  400: $color-secondary-400,
+  500: $color-secondary-500,
+  600: $color-secondary-600,
+  700: $color-secondary-700,
+  800: $color-secondary-800,
+  900: $color-secondary-900,
+);
+
+$palette-tertiary: (
+  100: $color-tertiary-100,
+  200: $color-tertiary-200,
+  300: $color-tertiary-300,
+  400: $color-tertiary-400,
+  500: $color-tertiary-500,
+  600: $color-tertiary-600,
+  700: $color-tertiary-700,
+  800: $color-tertiary-800,
+  900: $color-tertiary-900,
+);
+
+$palette-gray: (
+  100: $color-gray-100,
+  200: $color-gray-200,
+  300: $color-gray-300,
+  400: $color-gray-400,
+  500: $color-gray-500,
+  600: $color-gray-600,
+  700: $color-gray-700,
+  800: $color-gray-800,
+  900: $color-gray-900,
+);
+
+$palette-system: (
+  success: (light: $color-success-light, base: $color-success-500, dark: $color-success-dark),
+  warning: (light: $color-warning-light, base: $color-warning-500, dark: $color-warning-dark),
+  error: (light: $color-error-light, base: $color-error-500, dark: $color-error-dark),
+  info: (light: $color-info-light, base: $color-info-500, dark: $color-info-dark),
+);
+
+$palettes: (
+  primary: $palette-primary,
+  secondary: $palette-secondary,
+  tertiary: $palette-tertiary,
+  "gray": $palette-gray,
+);

@@ -1,0 +1,56 @@
+// Publica os tokens Sass como CSS Custom Properties, permitindo consumo em
+// qualquer contexto (inline styles, JS, futura troca de tema) sem duplicar valores.
+@use "../abstracts/colors" as c;
+@use "../abstracts/tokens" as t;
+
+:root {
+  // Paletas de marca — 100 a 900
+  @each $step, $value in c.$palette-primary {
+    --color-primary-#{$step}: #{$value};
+  }
+  @each $step, $value in c.$palette-secondary {
+    --color-secondary-#{$step}: #{$value};
+  }
+  @each $step, $value in c.$palette-tertiary {
+    --color-tertiary-#{$step}: #{$value};
+  }
+  @each $step, $value in c.$palette-gray {
+    --color-gray-#{$step}: #{$value};
+  }
+
+  // Semânticos de estado
+  --color-success: #{c.$color-success-500};
+  --color-success-bg: #{c.$color-success-light};
+  --color-warning: #{c.$color-warning-500};
+  --color-warning-bg: #{c.$color-warning-light};
+  --color-error: #{c.$color-error-500};
+  --color-error-bg: #{c.$color-error-light};
+  --color-info: #{c.$color-info-500};
+  --color-info-bg: #{c.$color-info-light};
+
+  // Tokens semânticos (nome de uso, não de cor)
+  @each $name, $value in t.$semantic-color {
+    --#{$name}: #{$value};
+  }
+
+  // Tipografia
+  --font-family-base: #{t.$font-family-base};
+  --font-family-heading: #{t.$font-family-heading};
+
+  // Espaçamento
+  --space-100: #{t.$space-100};
+  --space-200: #{t.$space-200};
+  --space-300: #{t.$space-300};
+  --space-400: #{t.$space-400};
+  --space-500: #{t.$space-500};
+  --space-600: #{t.$space-600};
+  --space-700: #{t.$space-700};
+  --space-800: #{t.$space-800};
+  --space-900: #{t.$space-900};
+
+  // Raio
+  --radius-sm: #{t.$radius-sm};
+  --radius-md: #{t.$radius-md};
+  --radius-lg: #{t.$radius-lg};
+  --radius-full: #{t.$radius-full};
+}

@@ -1,0 +1,100 @@
+// =============================================================================
+// TOKENS SEMÂNTICOS
+// Camada de significado sobre a paleta bruta: o que "botão CTA" ou "texto sobre
+// fundo escuro" significam, para que componentes nunca leiam $color-* direto.
+// =============================================================================
+@use "colors" as *;
+
+$semantic-color: (
+  // Superfícies (60% neutro)
+  "surface-base": $color-white,
+  "surface-sunken": $color-gray-100,
+  "surface-inverse": $color-gray-900,
+  "surface-highlight": $color-secondary-100,
+  // uso: bg de seções em destaque (30%)
+
+  // Texto
+  "text-primary": $color-gray-900,
+  "text-secondary": $color-gray-600,
+  "text-muted": $color-gray-500,
+  "text-on-inverse": $color-gray-100,
+  "text-subtitle": $color-secondary-700,
+  // subtítulos (30%)
+
+  // Marca / ação (10%)
+  "cta-bg": $color-primary-500,
+  "cta-bg-hover": $color-primary-600,
+  "cta-bg-active": $color-primary-700,
+  "cta-text": $color-white,
+  "accent": $color-primary-500,
+
+  // Apoio (badges / infos simples)
+  "badge-bg": $color-tertiary-100,
+  "badge-text": $color-tertiary-800,
+  "badge-border": $color-tertiary-300,
+
+  // Bordas e divisores
+  "border-subtle": $color-gray-200,
+  "border-strong": $color-gray-400,
+
+  // Semânticos de estado
+  "success": $color-success-500,
+  "success-bg": $color-success-light,
+  "warning": $color-warning-500,
+  "warning-bg": $color-warning-light,
+  "error": $color-error-500,
+  "error-bg": $color-error-light,
+  "info": $color-info-500,
+  "info-bg": $color-info-light
+);
+
+// Escala tipográfica
+$font-family-base: "Space Grotesk", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+$font-family-heading: "Space Grotesk", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+$font-size-100: 0.75rem;
+$font-size-200: 0.875rem;
+$font-size-300: 1rem;
+$font-size-400: 1.125rem;
+$font-size-500: 1.5rem;
+$font-size-600: 2rem;
+$font-size-700: 2.75rem;
+$font-size-800: 3.5rem;
+
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+$line-height-tight: 1.15;
+$line-height-base: 1.5;
+
+// Espaçamento (escala de 4px)
+$space-100: 0.25rem;
+$space-200: 0.5rem;
+$space-300: 0.75rem;
+$space-400: 1rem;
+$space-500: 1.5rem;
+$space-600: 2rem;
+$space-700: 3rem;
+$space-800: 4.5rem;
+$space-900: 6rem;
+
+// Raio e sombra
+$radius-sm: 0.375rem;
+$radius-md: 0.75rem;
+$radius-lg: 1.25rem;
+$radius-full: 999px;
+
+$shadow-sm: 0 1px 2px rgba($color-gray-900, 0.08);
+$shadow-md: 0 8px 24px rgba($color-gray-900, 0.16);
+$shadow-glow-primary: 0 0 0 4px rgba($color-primary-500, 0.24);
+
+// Container
+$container-max-width: 1200px;
+
+// Breakpoints
+$breakpoint-sm: 480px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
