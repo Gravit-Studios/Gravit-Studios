@@ -5,6 +5,7 @@ import { initNavScroll } from './nav-scroll.js';
 import { initReveal } from './reveal.js';
 import { initPortfolioCarousel } from './portfolio-carousel.js';
 import { initStrategyScroll } from './strategy-scroll.js';
+import { renderStarmap } from './starmap.js';
 
 function renderPalettes() {
   const root = document.querySelector('#palette-showcase');
@@ -46,3 +47,7 @@ if (portfolio) initPortfolioCarousel(portfolio);
 
 const strategy = document.querySelector('[data-strategy]');
 if (strategy) initStrategyScroll(strategy);
+
+document.querySelectorAll('[data-starmap], [data-starmap-footer]').forEach((el, i) => {
+  renderStarmap(el, { seed: i + 1 });
+});

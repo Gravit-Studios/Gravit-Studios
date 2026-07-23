@@ -1,9 +1,18 @@
 @use "../abstracts" as *;
 
 .footer {
+  position: relative;
+  overflow: hidden;
   padding-block: $space-800 $space-600;
   background-color: var(--surface-inverse);
   color: var(--text-on-inverse);
+}
+
+.footer__cta,
+.footer__divider,
+.footer__bottom {
+  position: relative;
+  z-index: 1;
 }
 
 .footer__cta {

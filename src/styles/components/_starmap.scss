@@ -1,0 +1,58 @@
+@use "../abstracts" as *;
+
+.starmap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.starmap__svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(140vw, 1400px);
+  height: min(140vw, 1400px);
+  transform: translate(-50%, -50%);
+}
+
+.starmap__group {
+  transform-origin: 450px 450px;
+  animation: starmap-spin 200s linear infinite;
+}
+
+.starmap__ring {
+  fill: none;
+  stroke: rgba($color-gray-100, 0.5);
+  stroke-width: 1;
+}
+
+.starmap__spoke {
+  stroke: rgba($color-gray-100, 0.12);
+  stroke-width: 1;
+}
+
+.starmap__tick {
+  stroke: rgba($color-gray-100, 0.35);
+  stroke-width: 1;
+}
+
+.starmap__node {
+  fill: rgba($color-gray-100, 0.6);
+}
+
+.starmap__core {
+  fill: rgba($color-primary-300, 0.35);
+  filter: blur(18px);
+}
+
+@keyframes starmap-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .starmap__group {
+    animation: none;
+  }
+}

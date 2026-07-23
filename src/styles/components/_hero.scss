@@ -67,34 +67,6 @@
   50% { transform: scale(1.15); opacity: 0.9; }
 }
 
-// Anéis orbitais — referência visual de "gravidade".
-.hero__orbits {
-  position: absolute;
-  z-index: 0;
-  top: 50%;
-  left: 50%;
-  width: min(90vw, 900px);
-  height: min(90vw, 900px);
-  transform: translate(-50%, -50%);
-  opacity: 0.35;
-  pointer-events: none;
-}
-
-.hero__orbit {
-  fill: none;
-  stroke: rgba($color-gray-100, 0.14);
-  stroke-width: 1;
-  transform-origin: 400px 400px;
-}
-
-.hero__orbit--1 { animation: hero-orbit-spin 60s linear infinite; }
-.hero__orbit--2 { stroke: rgba($color-primary-300, 0.16); animation: hero-orbit-spin 90s linear infinite reverse; }
-.hero__orbit--3 { animation: hero-orbit-spin 120s linear infinite; }
-
-@keyframes hero-orbit-spin {
-  to { transform: rotate(360deg); }
-}
-
 .hero__content {
   position: relative;
   z-index: 1;
@@ -194,7 +166,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .hero__glow,
-  .hero__orbit,
   .hero__scroll-line {
     animation: none;
   }
