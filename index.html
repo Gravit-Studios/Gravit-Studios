@@ -35,9 +35,13 @@
       <!-- HERO — altura de tela cheia, fundo "espaço profundo" com starfield animado -->
       <section class="hero" id="hero" aria-labelledby="hero-title">
         <canvas class="hero__canvas" data-hero-canvas aria-hidden="true"></canvas>
-        <div class="hero__glow hero__glow--a" aria-hidden="true"></div>
-        <div class="hero__glow hero__glow--b" aria-hidden="true"></div>
-        <div class="starmap" data-starmap></div>
+        <div class="hero__parallax" data-parallax data-parallax-speed="0.12">
+          <div class="hero__glow hero__glow--a" aria-hidden="true"></div>
+        </div>
+        <div class="hero__parallax" data-parallax data-parallax-speed="0.08">
+          <div class="hero__glow hero__glow--b" aria-hidden="true"></div>
+        </div>
+        <div class="starmap" data-starmap data-parallax data-parallax-speed="0.05"></div>
 
         <div class="hero__content">
           <div class="hero__top-row">
@@ -117,6 +121,14 @@
             <span data-portfolio-current>01</span>/<span data-portfolio-total>04</span>
           </div>
         </div>
+      </section>
+
+      <!-- PASSAGEM — transição animada em linhas (efeito de "salto" no espaço),
+           com parallax ligado ao scroll -->
+      <section class="warp" aria-hidden="true" data-parallax-section>
+        <div class="warp__lines" data-warp-lines></div>
+        <div class="warp__fade warp__fade--top"></div>
+        <div class="warp__fade warp__fade--bottom"></div>
       </section>
 
       <!-- SOBRE — altura de tela cheia; ilustração outline de três planetas se

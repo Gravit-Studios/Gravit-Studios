@@ -6,6 +6,8 @@ import { initPortfolioCarousel } from './portfolio-carousel.js';
 import { initStrategyScroll } from './strategy-scroll.js';
 import { initStrategyGravity } from './strategy-gravity.js';
 import { renderStarmap } from './starmap.js';
+import { initWarpLines } from './warp-lines.js';
+import { initScrollFx } from './scroll-fx.js';
 
 initReveal();
 
@@ -28,3 +30,9 @@ if (strategy) {
 document.querySelectorAll('[data-starmap], [data-starmap-footer]').forEach((el, i) => {
   renderStarmap(el, { seed: i + 1 });
 });
+
+const warpLinesContainer = document.querySelector('[data-warp-lines]');
+const warpController = warpLinesContainer ? initWarpLines(warpLinesContainer) : undefined;
+const warpSection = warpLinesContainer?.closest('.warp');
+
+initScrollFx({ warp: warpController ? { controller: warpController, section: warpSection } : undefined });

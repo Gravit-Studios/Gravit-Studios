@@ -24,6 +24,16 @@
   opacity: 0.9;
 }
 
+// Wrapper do parallax — ocupa o hero inteiro para que o posicionamento
+// percentual do glow (filho) continue igual; o parallax anima este
+// elemento, deixando a animação de "respiração" do glow intacta.
+.hero__parallax {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
 // Glows radiais que simulam nebulosas — leve textura de "universo".
 .hero__glow {
   position: absolute;
