@@ -3,6 +3,7 @@ import { palettes } from './palette-data.js';
 import { initHeroStarfield } from './hero-starfield.js';
 import { initNavScroll } from './nav-scroll.js';
 import { initReveal } from './reveal.js';
+import { initPortfolioCarousel } from './portfolio-carousel.js';
 
 function renderPalettes() {
   const root = document.querySelector('#palette-showcase');
@@ -38,3 +39,6 @@ if (header) initNavScroll(header);
 
 const heroCanvas = document.querySelector('[data-hero-canvas]');
 if (heroCanvas) initHeroStarfield(heroCanvas);
+
+const portfolio = document.querySelector('[data-portfolio]');
+if (portfolio) initPortfolioCarousel(portfolio);

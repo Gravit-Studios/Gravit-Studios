@@ -52,4 +52,12 @@
       color: var(--text-on-inverse);
     }
   }
+
+  &__cta {
+    display: none;
+
+    @include breakpoint-up(md) {
+      display: inline-flex;
+    }
+  }
 }

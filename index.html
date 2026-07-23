@@ -21,11 +21,12 @@
       <div class="header__inner">
         <span class="header__logo">Gravit<span class="header__logo-dot">.</span></span>
         <nav class="header__nav" aria-label="Navegação principal">
-          <a class="header__link" href="#servicos">Serviços</a>
           <a class="header__link" href="#sobre">Sobre</a>
-          <a class="header__link" href="#tokens">Design System</a>
+          <a class="header__link" href="#portfolio">Portfolio</a>
+          <a class="header__link" href="#estrategia">Estratégia</a>
           <a class="header__link" href="#contato">Contato</a>
         </nav>
+        <a class="btn btn--primary btn--sm header__cta" href="#contato">Começar um projeto</a>
       </div>
     </header>
 
@@ -56,57 +57,92 @@
           </p>
           <div class="hero__actions reveal" style="--reveal-delay: 4">
             <a class="btn btn--primary" href="#contato">Quero atrair mais clientes</a>
-            <a class="btn btn--ghost" href="#servicos">Ver serviços</a>
+            <a class="btn btn--ghost" href="#portfolio">Ver portfólio</a>
           </div>
         </div>
 
-        <a class="hero__scroll-cue reveal" href="#servicos" style="--reveal-delay: 5" aria-label="Rolar para a próxima seção">
+        <a class="hero__scroll-cue reveal" href="#portfolio" style="--reveal-delay: 5" aria-label="Rolar para a próxima seção">
           <span class="hero__scroll-line" aria-hidden="true"></span>
           Scroll
         </a>
       </section>
 
-      <!-- SERVIÇOS — fundo claro (neutro, 60%), badges em terciária -->
-      <section class="section" id="servicos" aria-labelledby="servicos-title">
-        <div class="section__inner">
-          <span class="section__eyebrow">O que fazemos</span>
-          <h2 id="servicos-title" class="section__title">Órbitas de atuação</h2>
-          <p class="section__lead">
+      <!-- PORTFOLIO — carrossel horizontal full-bleed, uma imagem grande por vez -->
+      <section class="portfolio" id="portfolio" aria-labelledby="portfolio-title" data-portfolio>
+        <div class="portfolio__intro section__inner">
+          <span class="section__eyebrow reveal">Portfolio</span>
+          <h2 id="portfolio-title" class="section__title reveal">Órbitas de atuação</h2>
+          <p class="section__lead reveal">
             Cada projeto é uma órbita: um conjunto de entregas desenhado para
             manter seu cliente girando ao seu redor.
           </p>
+        </div>
 
-          <div class="card-grid">
-            <article class="card">
-              <span class="badge">Sites institucionais</span>
-              <h3 class="card__title" style="margin-top: var(--space-300);">Presença que gera confiança</h3>
-              <p class="card__text">Sites rápidos, acessíveis e estruturados para converter visitantes em contato.</p>
+        <div class="portfolio__stage">
+          <div class="portfolio__track" data-portfolio-track>
+            <article class="portfolio__slide">
+              <div class="portfolio__media portfolio__media--1" aria-hidden="true"></div>
+              <div class="portfolio__caption">
+                <span class="portfolio__tag">Sites institucionais</span>
+                <h3 class="portfolio__title">Presença que gera confiança</h3>
+              </div>
             </article>
-            <article class="card">
-              <span class="badge">Landing pages</span>
-              <h3 class="card__title" style="margin-top: var(--space-300);">Foco total em conversão</h3>
-              <p class="card__text">LPs enxutas, com copy e design alinhados a um único objetivo de campanha.</p>
+            <article class="portfolio__slide">
+              <div class="portfolio__media portfolio__media--2" aria-hidden="true"></div>
+              <div class="portfolio__caption">
+                <span class="portfolio__tag">Landing pages</span>
+                <h3 class="portfolio__title">Foco total em conversão</h3>
+              </div>
             </article>
-            <article class="card">
-              <span class="badge">Apresentações</span>
-              <h3 class="card__title" style="margin-top: var(--space-300);">Institucional e comercial</h3>
-              <p class="card__text">Materiais que comunicam autoridade em reuniões e propostas comerciais.</p>
+            <article class="portfolio__slide">
+              <div class="portfolio__media portfolio__media--3" aria-hidden="true"></div>
+              <div class="portfolio__caption">
+                <span class="portfolio__tag">Apresentações</span>
+                <h3 class="portfolio__title">Institucional e comercial</h3>
+              </div>
             </article>
-            <article class="card">
-              <span class="badge">Consultoria</span>
-              <h3 class="card__title" style="margin-top: var(--space-300);">Estratégia + design</h3>
-              <p class="card__text">Diagnóstico de marca e experiência digital, com plano de ação priorizado.</p>
+            <article class="portfolio__slide">
+              <div class="portfolio__media portfolio__media--4" aria-hidden="true"></div>
+              <div class="portfolio__caption">
+                <span class="portfolio__tag">Consultoria</span>
+                <h3 class="portfolio__title">Estratégia + design</h3>
+              </div>
             </article>
+          </div>
+        </div>
+
+        <div class="portfolio__nav section__inner">
+          <div class="portfolio__arrows">
+            <button class="portfolio__arrow" type="button" data-portfolio-prev aria-label="Projeto anterior">&larr;</button>
+            <button class="portfolio__arrow" type="button" data-portfolio-next aria-label="Próximo projeto">&rarr;</button>
+          </div>
+          <div class="portfolio__counter" aria-hidden="true">
+            <span data-portfolio-current>01</span>/<span data-portfolio-total>04</span>
           </div>
         </div>
       </section>
 
-      <!-- SEÇÃO EM DESTAQUE — fundo em cor secundária (os 30%) -->
-      <section class="section section--highlight" id="sobre" aria-labelledby="sobre-title">
+      <!-- SOBRE — fundo claro (neutro, 60%) -->
+      <section class="section" id="sobre" aria-labelledby="sobre-title">
         <div class="section__inner">
-          <span class="section__eyebrow">Nosso método</span>
-          <h2 id="sobre-title" class="section__title">Design com peso estratégico</h2>
-          <p class="section__lead">
+          <span class="section__eyebrow reveal">Sobre</span>
+          <h2 id="sobre-title" class="section__title reveal">Uma agência com peso próprio</h2>
+          <p class="section__lead reveal">
+            A Gravit Studios nasceu para atender negócios de pequeno e médio
+            porte que precisam de um site, landing page, apresentação ou
+            consultoria — mas com o mesmo nível de estratégia e cuidado que
+            grandes marcas contratam. Acreditamos que design bom não é
+            decoração: é a força que atrai o cliente certo até você.
+          </p>
+        </div>
+      </section>
+
+      <!-- ESTRATÉGIA — fundo em cor secundária (os 30%) -->
+      <section class="section section--highlight" id="estrategia" aria-labelledby="estrategia-title">
+        <div class="section__inner">
+          <span class="section__eyebrow reveal">Estratégia</span>
+          <h2 id="estrategia-title" class="section__title reveal">Design com peso estratégico</h2>
+          <p class="section__lead reveal">
             Assim como a gravidade é proporcional à massa, a atração do seu
             site é proporcional à consistência do seu design system: cores,
             tipografia e componentes trabalhando como um único corpo.
@@ -114,26 +150,27 @@
         </div>
       </section>
 
-      <!-- VITRINE DO DESIGN SYSTEM — documentação viva das paletas -->
-      <section class="section" id="tokens" aria-labelledby="tokens-title">
+      <!-- CONTATO — fundo "espaço profundo" (neutro escuro, os 60%), CTA em cor primária -->
+      <section class="section section--inverse" id="contato" aria-labelledby="contato-title">
         <div class="section__inner">
-          <span class="section__eyebrow">Design System</span>
-          <h2 id="tokens-title" class="section__title">Paleta de cores</h2>
-          <p class="section__lead">
-            Escalas de 100 a 900, com 500 como cor base. Primária para CTAs e
-            destaques, secundária para subtítulos e fundos de seção,
-            terciária para badges e informações simples, e a escala neutra
-            sustentando 60% da composição.
+          <span class="section__eyebrow reveal">Contato</span>
+          <h2 id="contato-title" class="section__title reveal">Vamos colocar seu projeto em órbita?</h2>
+          <p class="section__lead reveal">
+            Conta pra gente o que você precisa e a gente te mostra como um
+            design com estratégia pode atrair mais clientes.
           </p>
-          <div id="palette-showcase"></div>
+          <div class="reveal" style="margin-top: var(--space-600);">
+            <a class="btn btn--primary" href="mailto:gravitstudios@gmail.com">Começar um projeto</a>
+          </div>
         </div>
       </section>
     </main>
 
-    <footer class="section section--inverse" id="contato">
-      <div class="section__inner">
-        <h2 class="section__title">Vamos colocar seu projeto em órbita?</h2>
-        <p class="section__lead">gravitstudios@gmail.com</p>
+    <footer class="footer">
+      <div class="footer__inner">
+        <span class="footer__logo">Gravit<span class="header__logo-dot">.</span></span>
+        <p class="footer__copy">&copy; 2026 Gravit Studios. Todos os direitos reservados.</p>
+        <a class="footer__email" href="mailto:gravitstudios@gmail.com">gravitstudios@gmail.com</a>
       </div>
     </footer>
 

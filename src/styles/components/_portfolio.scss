@@ -1,0 +1,155 @@
+@use "../abstracts" as *;
+
+.portfolio {
+  padding-block: $space-800 $space-700;
+  background-color: var(--surface-base);
+  overflow: hidden;
+}
+
+.portfolio__intro {
+  margin-bottom: $space-700;
+}
+
+// Palco full-bleed — sai do container, ocupa a largura inteira da viewport.
+.portfolio__stage {
+  position: relative;
+  width: 100%;
+  height: min(72vh, 46rem);
+  overflow: hidden;
+}
+
+.portfolio__track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.portfolio__slide {
+  position: relative;
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+}
+
+.portfolio__media {
+  position: absolute;
+  inset: 0;
+  background-position: center;
+  background-size: cover;
+
+  // Gradientes abstratos temporários no lugar de fotos reais de projetos —
+  // trocar por imagens quando os cases estiverem prontos.
+  &--1 {
+    background-image:
+      linear-gradient(0deg, rgba($color-gray-900, 0.65), rgba($color-gray-900, 0.1) 55%),
+      radial-gradient(120% 140% at 15% 15%, rgba($color-primary-400, 0.9), transparent 60%),
+      linear-gradient(135deg, $color-primary-800, $color-gray-900 70%);
+  }
+
+  &--2 {
+    background-image:
+      linear-gradient(0deg, rgba($color-gray-900, 0.65), rgba($color-gray-900, 0.1) 55%),
+      radial-gradient(120% 140% at 85% 20%, rgba($color-secondary-400, 0.85), transparent 60%),
+      linear-gradient(135deg, $color-secondary-800, $color-gray-900 70%);
+  }
+
+  &--3 {
+    background-image:
+      linear-gradient(0deg, rgba($color-gray-900, 0.65), rgba($color-gray-900, 0.1) 55%),
+      radial-gradient(120% 140% at 20% 85%, rgba($color-tertiary-400, 0.8), transparent 60%),
+      linear-gradient(135deg, $color-tertiary-800, $color-gray-900 70%);
+  }
+
+  &--4 {
+    background-image:
+      linear-gradient(0deg, rgba($color-gray-900, 0.65), rgba($color-gray-900, 0.1) 55%),
+      radial-gradient(120% 140% at 80% 80%, rgba($color-primary-300, 0.75), transparent 60%),
+      linear-gradient(135deg, $color-gray-800, $color-gray-900 70%);
+  }
+}
+
+.portfolio__caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: $space-600 $space-500;
+  color: $color-white;
+
+  @include breakpoint-up(lg) {
+    padding: $space-800 $space-700;
+  }
+}
+
+.portfolio__tag {
+  display: inline-block;
+  margin-bottom: $space-300;
+  font-size: $font-size-200;
+  font-weight: $font-weight-medium;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba($color-white, 0.75);
+}
+
+.portfolio__title {
+  font-family: var(--font-family-heading);
+  font-weight: $font-weight-semibold;
+  font-size: clamp(2rem, 2vw + 1.75rem, 3.5rem);
+  line-height: 1.05;
+  max-width: 24ch;
+  color: $color-white;
+}
+
+.portfolio__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: $space-500;
+}
+
+.portfolio__arrows {
+  display: flex;
+  gap: $space-300;
+}
+
+.portfolio__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: $radius-full;
+  border: 1px solid var(--border-strong);
+  font-size: $font-size-400;
+  color: var(--text-primary);
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    background-color: var(--surface-sunken);
+    border-color: var(--color-primary-500);
+  }
+
+  &:active {
+    transform: scale(0.94);
+  }
+}
+
+.portfolio__counter {
+  font-family: var(--font-family-heading);
+  font-size: $font-size-700;
+  font-weight: $font-weight-semibold;
+  color: var(--text-muted);
+  letter-spacing: -0.02em;
+
+  [data-portfolio-current] {
+    color: var(--text-primary);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio__track {
+    transition: none;
+  }
+}
