@@ -1,0 +1,115 @@
+@use "../abstracts" as *;
+
+.about {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding-block: $space-800;
+}
+
+.about__inner {
+  display: grid;
+  gap: $space-700;
+  align-items: center;
+
+  @include breakpoint-up(lg) {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: $space-800;
+  }
+}
+
+.about__text {
+  max-width: 38rem;
+}
+
+.about__illustration {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-600;
+}
+
+.about__illustration-svg {
+  width: 100%;
+  max-width: 34rem;
+  height: auto;
+  overflow: visible;
+}
+
+.about__orbit-path {
+  fill: none;
+  stroke: var(--border-strong);
+  stroke-width: 1;
+  stroke-dasharray: 3 7;
+}
+
+.about__planet-body {
+  fill: var(--surface-raised);
+  stroke: var(--border-strong);
+  stroke-width: 1.5;
+
+  &--accent {
+    fill: rgba($color-primary-500, 0.12);
+    stroke: var(--color-primary-500);
+  }
+}
+
+.about__planet-ring {
+  fill: none;
+  stroke: var(--color-primary-400);
+  stroke-width: 1.5;
+  opacity: 0.6;
+}
+
+.about__planet-line {
+  fill: none;
+  stroke: var(--border-subtle);
+  stroke-width: 1;
+}
+
+// Leve flutuação contínua, independente da entrada por scroll (que fica no
+// grupo pai .about__planet, via .reveal) — soma-se a ela sem conflitar.
+.about__planet-bob {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: about-bob 7s ease-in-out infinite;
+
+  &--a {
+    animation-delay: -1s;
+  }
+
+  &--b {
+    animation-delay: -3.5s;
+  }
+
+  &--c {
+    animation-delay: -5s;
+  }
+}
+
+@keyframes about-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-0.4rem); }
+}
+
+.about__legend {
+  display: flex;
+  align-items: center;
+  gap: $space-500;
+  font-size: $font-size-200;
+  font-weight: $font-weight-medium;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.about__legend-item--accent {
+  color: var(--color-primary-400);
+  font-weight: $font-weight-semibold;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about__planet-bob {
+    animation: none;
+  }
+}
