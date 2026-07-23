@@ -16,7 +16,7 @@ $semantic-color: (
   "surface-sunken": rgba($color-white, 0.04),
   // hover/estados sutis sobre o fundo escuro
   "surface-inverse": $color-gray-900,
-  "surface-highlight": $color-secondary-900,
+  "surface-highlight": $color-secondary-700,
   // uso: bg de seções em destaque (30%)
 
   // Texto
@@ -55,8 +55,8 @@ $semantic-color: (
 );
 
 // Escala tipográfica
-$font-family-base: "Supreme", system-ui, -apple-system, "Segoe UI", sans-serif;
-$font-family-heading: "Clash Display", "Supreme", system-ui, -apple-system, "Segoe UI", sans-serif;
+$font-family-base: "Google Sans Flex", system-ui, -apple-system, "Segoe UI", sans-serif;
+$font-family-heading: "Google Sans Flex", system-ui, -apple-system, "Segoe UI", sans-serif;
 
 $font-size-100: 0.75rem;
 $font-size-200: 0.875rem;
@@ -99,6 +99,10 @@ $shadow-glow-primary: 0 0 0 4px rgba($color-primary-500, 0.24);
 
 // Container
 $container-max-width: 1200px;
+
+// Altura do footer "reveal" — reservada no final da página para o
+// footer fixo aparecer por baixo do conteúdo ao rolar até o fim.
+$footer-reveal-height: 100vh;
 
 // Breakpoints
 $breakpoint-sm: 480px;

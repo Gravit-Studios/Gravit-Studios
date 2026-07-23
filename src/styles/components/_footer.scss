@@ -1,7 +1,17 @@
 @use "../abstracts" as *;
 
+// Footer "reveal": fica fixo no fim da viewport (atrás do conteúdo, que
+// tem margin-bottom equivalente) e só aparece de fato quando o usuário
+// rola até o final da página — como se o site "descobrisse" a base.
 .footer {
-  position: relative;
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: $footer-reveal-height;
   overflow: hidden;
   padding-block: $space-800 $space-600;
   background-color: var(--surface-inverse);
@@ -36,9 +46,9 @@
 }
 
 .footer__question {
-  max-width: 22ch;
-  font-size: $font-size-700;
-  line-height: 1.1;
+  max-width: 18ch;
+  font-size: $font-size-800;
+  line-height: 1.05;
   color: var(--text-on-inverse);
 }
 

@@ -1,9 +1,12 @@
 // Marca o bloco de narrativa ativo conforme cruza a faixa central da
 // viewport durante o scroll, destaca a camada correspondente na montagem
-// (efeito de "aproximação") e atualiza o rótulo lateral que a acompanha.
-export function initStrategyScroll(root) {
+// (efeito de "aproximação"), avança a linha de energia até ela e atualiza
+// o alvo das partículas em órbita — tudo remetendo à atração gravitacional.
+export function initStrategyScroll(root, { gravity } = {}) {
   const items = Array.from(root.querySelectorAll('[data-strategy-item]'));
   const layers = Array.from(root.querySelectorAll('[data-layer]'));
+  const visual = root.querySelector('[data-strategy-visual]');
+  const progress = root.querySelector('[data-strategy-progress]');
   const labelTag = root.querySelector('[data-label-tag]');
   const labelTitle = root.querySelector('[data-label-title]');
 
@@ -17,6 +20,16 @@ export function initStrategyScroll(root) {
     if (labelTag) labelTag.textContent = active.dataset.tag || '';
     if (labelTitle) {
       labelTitle.textContent = active.querySelector('.strategy__block-title')?.textContent ?? '';
+    }
+
+    const activeLayer = layers[index];
+    if (activeLayer && visual) {
+      const visualRect = visual.getBoundingClientRect();
+      const layerRect = activeLayer.getBoundingClientRect();
+      const centerY = layerRect.top - visualRect.top + layerRect.height / 2;
+
+      if (progress) progress.style.height = `${centerY}px`;
+      gravity?.setTargetY(centerY);
     }
   }
 
@@ -47,5 +60,7 @@ export function initStrategyScroll(root) {
   );
 
   items.forEach((item) => observer.observe(item));
-  setActive(0);
+
+  // Medir a posição real das camadas depende do layout já estar pronto.
+  requestAnimationFrame(() => setActive(0));
 }

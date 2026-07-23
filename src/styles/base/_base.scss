@@ -11,6 +11,15 @@ body {
   background-color: var(--surface-base);
 }
 
+// Ocupa o fluxo normal do documento, com espaço reservado no final igual à
+// altura do footer fixo — é essa folga que permite o efeito de "reveal".
+#main {
+  position: relative;
+  z-index: 1;
+  background-color: var(--surface-base);
+  margin-bottom: $footer-reveal-height;
+}
+
 h1,
 h2,
 h3,

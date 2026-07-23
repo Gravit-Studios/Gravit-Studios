@@ -114,6 +114,17 @@
   align-items: center;
   gap: $space-700;
   flex: 0 0 auto;
+  padding-block: $space-700;
+}
+
+// Partículas em órbita ao redor do poço gravitacional ativo (ver strategy-gravity.js).
+.strategy__gravity-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .strategy__stack-line {
@@ -125,6 +136,21 @@
   border-left: 1px dashed var(--border-strong);
   transform: translateX(-50%);
   z-index: 0;
+}
+
+// Linha de energia que avança até a camada ativa conforme o scroll —
+// o "puxão" visual da gravidade descendo pela montagem.
+.strategy__stack-progress {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 0;
+  transform: translateX(-50%);
+  z-index: 0;
+  background: linear-gradient(180deg, var(--color-primary-400), var(--color-primary-600));
+  box-shadow: 0 0 12px 1px rgba($color-primary-500, 0.6);
+  transition: height 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .strategy__layer {
@@ -141,13 +167,28 @@
   backdrop-filter: blur(6px);
   opacity: 0.45;
   transform: scale(0.9);
-  transition: opacity 0.4s ease, transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+  transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.4s ease,
+    box-shadow 0.5s ease;
 
   &-index {
+    position: relative;
+    z-index: 1;
     font-family: var(--font-family-heading);
     font-size: $font-size-600;
     font-weight: $font-weight-semibold;
     color: rgba($color-white, 0.5);
+  }
+
+  // Poço gravitacional pulsante atrás da camada ativa.
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -30%;
+    z-index: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba($color-primary-500, 0.35), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
   }
 
   &.is-active {
@@ -159,7 +200,17 @@
     .strategy__layer-index {
       color: var(--color-primary-300);
     }
+
+    &::after {
+      opacity: 1;
+      animation: strategy-well-pulse 3.5s ease-in-out infinite;
+    }
   }
+}
+
+@keyframes strategy-well-pulse {
+  0%, 100% { transform: scale(0.9); opacity: 0.7; }
+  50% { transform: scale(1.15); opacity: 1; }
 }
 
 .strategy__stack-label {
@@ -205,7 +256,12 @@
 
 @media (prefers-reduced-motion: reduce) {
   .strategy__block,
-  .strategy__layer {
+  .strategy__layer,
+  .strategy__stack-progress {
     transition: none;
+  }
+
+  .strategy__layer.is-active::after {
+    animation: none;
   }
 }
