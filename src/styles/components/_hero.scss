@@ -70,13 +70,29 @@
 .hero__content {
   position: relative;
   z-index: 1;
+  width: 100%;
+  max-width: $container-max-width;
+  margin-inline: auto;
+  padding-inline: $space-500;
+  text-align: left;
+
+  @include breakpoint-up(lg) {
+    padding-inline: $space-700;
+  }
+}
+
+.hero__top-row {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: $space-400;
-  max-width: 52rem;
-  padding-inline: $space-500;
-  text-align: center;
+  gap: $space-300;
+  margin-bottom: $space-500;
+
+  @include breakpoint-up(md) {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: $space-600;
+  }
 }
 
 .hero__eyebrow {
@@ -85,6 +101,7 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--color-primary-300);
+  white-space: nowrap;
 }
 
 .hero__title {
@@ -98,18 +115,28 @@
   color: var(--text-on-inverse);
 }
 
+.hero__title-accent {
+  font-style: normal;
+  color: var(--color-primary-400);
+}
+
 .hero__lead {
-  max-width: 38rem;
-  font-size: $font-size-400;
+  max-width: 26rem;
+  font-size: $font-size-300;
   color: var(--color-gray-300);
+
+  @include breakpoint-up(md) {
+    text-align: right;
+    margin-left: auto;
+  }
 }
 
 .hero__actions {
   display: flex;
   gap: $space-400;
   flex-wrap: wrap;
-  justify-content: center;
-  margin-top: $space-300;
+  justify-content: flex-start;
+  margin-top: $space-600;
 
   .btn--ghost {
     color: var(--text-on-inverse);
