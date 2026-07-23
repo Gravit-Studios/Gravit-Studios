@@ -4,6 +4,9 @@
   "private": true,
   "description": "Gravit Studios — site institucional da agência digital.",
   "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
