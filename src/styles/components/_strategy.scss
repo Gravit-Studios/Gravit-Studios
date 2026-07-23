@@ -1,0 +1,164 @@
+@use "../abstracts" as *;
+
+.strategy {
+  padding-block: $space-800 $space-900;
+}
+
+.strategy__intro {
+  margin-bottom: $space-700;
+}
+
+.strategy__layout {
+  display: grid;
+  gap: $space-700;
+  align-items: start;
+
+  @include breakpoint-up(lg) {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: $space-800;
+  }
+}
+
+// Lista de passos — o item ativo é marcado conforme o scroll (ver strategy-scroll.js).
+.strategy__list {
+  display: flex;
+  flex-direction: column;
+  gap: $space-400;
+}
+
+.strategy__item {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-400;
+  padding: $space-500;
+  text-align: left;
+  border-radius: $radius-md;
+  border: 1px solid var(--border-subtle);
+  background-color: var(--surface-base);
+  transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+
+  &-index {
+    font-family: var(--font-family-heading);
+    font-size: $font-size-500;
+    font-weight: $font-weight-semibold;
+    color: var(--border-strong);
+    transition: color 0.3s ease;
+  }
+
+  &-body {
+    display: flex;
+    flex-direction: column;
+    gap: $space-200;
+  }
+
+  &-title {
+    font-weight: $font-weight-semibold;
+    font-size: $font-size-400;
+    color: var(--text-primary);
+  }
+
+  &-text {
+    font-size: $font-size-200;
+    color: var(--text-secondary);
+  }
+
+  &.is-active {
+    border-color: var(--color-primary-500);
+    background-color: var(--surface-base);
+    box-shadow: $shadow-md;
+    transform: translateX($space-100);
+
+    .strategy__item-index {
+      color: var(--color-primary-500);
+    }
+  }
+}
+
+// Painel lateral — sticky, revela o conteúdo do passo ativo com cross-fade.
+.strategy__panel {
+  position: relative;
+  min-height: 22rem;
+
+  @include breakpoint-up(lg) {
+    position: sticky;
+    top: 6rem;
+  }
+}
+
+.strategy__panel-item {
+  display: none;
+  padding: $space-600;
+  border-radius: $radius-lg;
+  background-color: var(--surface-base);
+  border: 1px solid var(--border-subtle);
+
+  &.is-active {
+    display: block;
+  }
+
+  @include breakpoint-up(lg) {
+    display: block;
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: translateY(0.75rem);
+    pointer-events: none;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+
+    &.is-active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+      position: relative;
+    }
+  }
+}
+
+.strategy__panel-tag {
+  display: inline-block;
+  margin-bottom: $space-300;
+  font-size: $font-size-200;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary-600);
+}
+
+.strategy__panel-title {
+  margin-bottom: $space-300;
+  font-size: $font-size-600;
+}
+
+.strategy__panel-text {
+  margin-bottom: $space-400;
+}
+
+.strategy__panel-list {
+  display: flex;
+  flex-direction: column;
+  gap: $space-200;
+
+  li {
+    position: relative;
+    padding-left: $space-500;
+    color: var(--text-secondary);
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.5em;
+      width: 0.4rem;
+      height: 0.4rem;
+      border-radius: $radius-full;
+      background-color: var(--color-primary-500);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .strategy__item,
+  .strategy__panel-item {
+    transition: none;
+  }
+}

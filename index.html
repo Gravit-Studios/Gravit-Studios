@@ -137,40 +137,130 @@
         </div>
       </section>
 
-      <!-- ESTRATÉGIA — fundo em cor secundária (os 30%) -->
-      <section class="section section--highlight" id="estrategia" aria-labelledby="estrategia-title">
-        <div class="section__inner">
+      <!-- ESTRATÉGIA — lista de passos que marca o item ativo conforme o scroll,
+           revelando o conteúdo correspondente no painel lateral -->
+      <section class="strategy section--highlight" id="estrategia" aria-labelledby="estrategia-title" data-strategy>
+        <div class="section__inner strategy__intro">
           <span class="section__eyebrow reveal">Estratégia</span>
-          <h2 id="estrategia-title" class="section__title reveal">Design com peso estratégico</h2>
+          <h2 id="estrategia-title" class="section__title reveal">Nosso processo em 4 passos</h2>
           <p class="section__lead reveal">
             Assim como a gravidade é proporcional à massa, a atração do seu
-            site é proporcional à consistência do seu design system: cores,
-            tipografia e componentes trabalhando como um único corpo.
+            site é proporcional à consistência da estratégia por trás dele.
           </p>
         </div>
-      </section>
 
-      <!-- CONTATO — fundo "espaço profundo" (neutro escuro, os 60%), CTA em cor primária -->
-      <section class="section section--inverse" id="contato" aria-labelledby="contato-title">
-        <div class="section__inner">
-          <span class="section__eyebrow reveal">Contato</span>
-          <h2 id="contato-title" class="section__title reveal">Vamos colocar seu projeto em órbita?</h2>
-          <p class="section__lead reveal">
-            Conta pra gente o que você precisa e a gente te mostra como um
-            design com estratégia pode atrair mais clientes.
-          </p>
-          <div class="reveal" style="margin-top: var(--space-600);">
-            <a class="btn btn--primary" href="mailto:gravitstudios@gmail.com">Começar um projeto</a>
+        <div class="strategy__layout section__inner">
+          <div class="strategy__list" data-strategy-list>
+            <button class="strategy__item is-active" type="button" data-strategy-item>
+              <span class="strategy__item-index">01</span>
+              <span class="strategy__item-body">
+                <span class="strategy__item-title">Diagnóstico gravitacional</span>
+                <span class="strategy__item-text">Entendemos seu negócio, seu público e sua concorrência antes de desenhar qualquer tela.</span>
+              </span>
+            </button>
+            <button class="strategy__item" type="button" data-strategy-item>
+              <span class="strategy__item-index">02</span>
+              <span class="strategy__item-body">
+                <span class="strategy__item-title">Direção de design</span>
+                <span class="strategy__item-text">Construímos a identidade visual e o design system que vão sustentar toda a experiência.</span>
+              </span>
+            </button>
+            <button class="strategy__item" type="button" data-strategy-item>
+              <span class="strategy__item-index">03</span>
+              <span class="strategy__item-body">
+                <span class="strategy__item-title">Desenvolvimento orbital</span>
+                <span class="strategy__item-text">Colocamos o projeto em órbita: site ou LP rápidos, acessíveis e prontos para converter.</span>
+              </span>
+            </button>
+            <button class="strategy__item" type="button" data-strategy-item>
+              <span class="strategy__item-index">04</span>
+              <span class="strategy__item-body">
+                <span class="strategy__item-title">Otimização contínua</span>
+                <span class="strategy__item-text">Acompanhamos métricas reais e ajustamos o design para manter a atração ao longo do tempo.</span>
+              </span>
+            </button>
+          </div>
+
+          <div class="strategy__panel" data-strategy-panel>
+            <div class="strategy__panel-item is-active" aria-hidden="false">
+              <span class="strategy__panel-tag">Passo 01</span>
+              <h3 class="strategy__panel-title">Diagnóstico gravitacional</h3>
+              <p class="strategy__panel-text">
+                Mapeamos o momento do seu negócio: objetivos, público-alvo,
+                concorrência e o que já funciona (ou não) na sua presença
+                digital atual.
+              </p>
+              <ul class="strategy__panel-list">
+                <li>Briefing e imersão no negócio</li>
+                <li>Análise de concorrência e referências</li>
+                <li>Definição de metas de conversão</li>
+              </ul>
+            </div>
+            <div class="strategy__panel-item" aria-hidden="true">
+              <span class="strategy__panel-tag">Passo 02</span>
+              <h3 class="strategy__panel-title">Direção de design</h3>
+              <p class="strategy__panel-text">
+                Traduzimos o diagnóstico em identidade visual e num design
+                system com cores, tipografia e componentes consistentes.
+              </p>
+              <ul class="strategy__panel-list">
+                <li>Paleta de cores e tipografia</li>
+                <li>Wireframes e protótipos navegáveis</li>
+                <li>Design system documentado</li>
+              </ul>
+            </div>
+            <div class="strategy__panel-item" aria-hidden="true">
+              <span class="strategy__panel-tag">Passo 03</span>
+              <h3 class="strategy__panel-title">Desenvolvimento orbital</h3>
+              <p class="strategy__panel-text">
+                Construímos o site, a landing page ou a apresentação com
+                performance, acessibilidade e padrões web de verdade.
+              </p>
+              <ul class="strategy__panel-list">
+                <li>Front-end responsivo e acessível</li>
+                <li>Testes em múltiplos dispositivos</li>
+                <li>Integrações e formulários de contato</li>
+              </ul>
+            </div>
+            <div class="strategy__panel-item" aria-hidden="true">
+              <span class="strategy__panel-tag">Passo 04</span>
+              <h3 class="strategy__panel-title">Otimização contínua</h3>
+              <p class="strategy__panel-text">
+                Acompanhamos os resultados após o lançamento e ajustamos o
+                design com base em dados reais de comportamento.
+              </p>
+              <ul class="strategy__panel-list">
+                <li>Acompanhamento de métricas</li>
+                <li>Testes A/B pontuais</li>
+                <li>Ajustes de design orientados por dados</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
     </main>
 
-    <footer class="footer">
-      <div class="footer__inner">
+    <!-- CONTATO + FOOTER — bloco final em fundo "espaço profundo" -->
+    <footer class="footer" id="contato">
+      <div class="footer__cta section__inner">
+        <div class="footer__question-block">
+          <span class="section__eyebrow reveal">Contato</span>
+          <h2 class="footer__question reveal">
+            Quer colocar seu projeto em órbita com a gente?
+          </h2>
+        </div>
+        <a class="footer__email reveal" href="mailto:gravitstudios@gmail.com">
+          gravitstudios@gmail.com
+          <span class="footer__email-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+
+      <div class="footer__divider section__inner"></div>
+
+      <div class="footer__bottom section__inner">
         <span class="footer__logo">Gravit<span class="header__logo-dot">.</span></span>
         <p class="footer__copy">&copy; 2026 Gravit Studios. Todos os direitos reservados.</p>
-        <a class="footer__email" href="mailto:gravitstudios@gmail.com">gravitstudios@gmail.com</a>
+        <a class="btn btn--primary btn--sm" href="mailto:gravitstudios@gmail.com">Começar um projeto</a>
       </div>
     </footer>
 
