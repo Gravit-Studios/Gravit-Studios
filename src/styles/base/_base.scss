@@ -1,5 +1,9 @@
 @use "../abstracts" as *;
 
+html {
+  scroll-padding-top: 5rem;
+}
+
 body {
   font-family: var(--font-family-base);
   font-size: $font-size-300;

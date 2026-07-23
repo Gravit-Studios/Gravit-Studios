@@ -1,5 +1,8 @@
 import './styles/main.scss';
 import { palettes } from './palette-data.js';
+import { initHeroStarfield } from './hero-starfield.js';
+import { initNavScroll } from './nav-scroll.js';
+import { initReveal } from './reveal.js';
 
 function renderPalettes() {
   const root = document.querySelector('#palette-showcase');
@@ -28,3 +31,10 @@ function renderPalettes() {
 }
 
 renderPalettes();
+initReveal();
+
+const header = document.querySelector('[data-header]');
+if (header) initNavScroll(header);
+
+const heroCanvas = document.querySelector('[data-hero-canvas]');
+if (heroCanvas) initHeroStarfield(heroCanvas);
