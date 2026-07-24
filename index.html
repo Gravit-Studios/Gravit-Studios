@@ -260,23 +260,34 @@
           </div>
 
           <div class="strategy__stack" data-strategy-panel>
-            <div class="strategy__stack-visual" data-strategy-visual>
-              <canvas class="strategy__gravity-canvas" data-strategy-gravity aria-hidden="true"></canvas>
-              <div class="strategy__stack-line" aria-hidden="true"></div>
-              <div class="strategy__stack-progress" data-strategy-progress aria-hidden="true"></div>
-              <div class="strategy__layer is-active" data-layer aria-hidden="true">
-                <span class="strategy__layer-index">01</span>
-              </div>
-              <div class="strategy__layer" data-layer aria-hidden="true">
-                <span class="strategy__layer-index">02</span>
-              </div>
-              <div class="strategy__layer" data-layer aria-hidden="true">
-                <span class="strategy__layer-index">03</span>
-              </div>
-              <div class="strategy__layer" data-layer aria-hidden="true">
-                <span class="strategy__layer-index">04</span>
-              </div>
-            </div>
+            <svg class="strategy__cubes-svg" viewBox="0 0 400 340" aria-hidden="true">
+              <defs>
+                <symbol id="strategy-cube" viewBox="-40 -40 80 80">
+                  <path d="M0,-40 L34.6,-20 L34.6,20 L0,40 L-34.6,20 L-34.6,-20 Z" />
+                  <path d="M0,0 L0,-40 M0,0 L34.6,20 M0,0 L-34.6,20" />
+                </symbol>
+              </defs>
+
+              <line class="strategy__cube-line" x1="90" y1="80" x2="200" y2="170" />
+              <line class="strategy__cube-line" x1="310" y1="80" x2="200" y2="170" />
+              <line class="strategy__cube-line" x1="90" y1="260" x2="200" y2="170" />
+              <line class="strategy__cube-line" x1="310" y1="260" x2="200" y2="170" />
+
+              <use href="#strategy-cube" x="174" y="144" width="52" height="52" class="strategy__cube-socket" />
+
+              <g class="strategy__cube is-active" data-layer style="--join-x: 110px; --join-y: 90px">
+                <use href="#strategy-cube" x="55" y="45" width="70" height="70" />
+              </g>
+              <g class="strategy__cube" data-layer style="--join-x: -110px; --join-y: 90px">
+                <use href="#strategy-cube" x="275" y="45" width="70" height="70" />
+              </g>
+              <g class="strategy__cube" data-layer style="--join-x: 110px; --join-y: -90px">
+                <use href="#strategy-cube" x="55" y="225" width="70" height="70" />
+              </g>
+              <g class="strategy__cube" data-layer style="--join-x: -110px; --join-y: -90px">
+                <use href="#strategy-cube" x="275" y="225" width="70" height="70" />
+              </g>
+            </svg>
 
             <div class="strategy__stack-label" aria-hidden="true">
               <span class="strategy__stack-connector" aria-hidden="true"></span>
