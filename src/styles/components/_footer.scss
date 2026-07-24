@@ -28,49 +28,126 @@
 .footer__cta {
   display: flex;
   flex-direction: column;
-  gap: $space-600;
+  gap: $space-700;
   padding-bottom: $space-700;
 
   @include breakpoint-up(lg) {
     flex-direction: row;
-    align-items: flex-end;
+    align-items: flex-start;
     justify-content: space-between;
-    gap: $space-500;
+    gap: $space-800;
   }
 }
 
-.footer__question-block {
+.footer__intro {
   .section__eyebrow {
     color: var(--color-primary-300);
   }
-}
 
-.footer__question {
-  max-width: 18ch;
-  font-size: $font-size-800;
-  line-height: 1.05;
-  color: var(--text-on-inverse);
-}
-
-.footer__email {
-  display: inline-flex;
-  align-items: center;
-  gap: $space-300;
-  font-family: var(--font-family-heading);
-  font-size: $font-size-500;
-  font-weight: $font-weight-medium;
-  color: var(--text-on-inverse);
-  white-space: nowrap;
-
-  &:hover .footer__email-arrow {
-    transform: translateX(0.25rem);
+  @include breakpoint-up(lg) {
+    flex: 1 1 auto;
+    max-width: 22rem;
   }
 }
 
-.footer__email-arrow {
-  display: inline-block;
-  color: var(--color-primary-300);
-  transition: transform 0.25s ease;
+.footer__big-title {
+  margin-top: $space-300;
+  font-size: clamp(3rem, 3vw + 2.5rem, 6rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--text-on-inverse);
+}
+
+.footer__info {
+  display: flex;
+  flex-direction: column;
+  gap: $space-100;
+  margin-top: $space-700;
+  padding-top: $space-500;
+  border-top: 1px solid rgba($color-white, 0.14);
+}
+
+.footer__info-label {
+  font-size: $font-size-100;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-gray-400);
+}
+
+.footer__info-value {
+  font-family: var(--font-family-heading);
+  font-size: $font-size-400;
+  font-weight: $font-weight-medium;
+  color: var(--text-on-inverse);
+}
+
+// Formulário de orçamento — campos com estilo minimalista (só a linha
+// inferior), coerente com a referência visual pedida.
+.footer__form {
+  display: flex;
+  flex-direction: column;
+  gap: $space-500;
+  width: 100%;
+
+  @include breakpoint-up(lg) {
+    max-width: 24rem;
+  }
+}
+
+.footer__form-title {
+  font-size: $font-size-500;
+  color: var(--text-on-inverse);
+}
+
+.footer__field {
+  display: flex;
+  flex-direction: column;
+  gap: $space-200;
+}
+
+.footer__field-label {
+  font-size: $font-size-100;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-gray-400);
+}
+
+.footer__field-input {
+  padding-block: $space-200;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid rgba($color-white, 0.24);
+  color: var(--text-on-inverse);
+  font-family: var(--font-family-base);
+  font-size: $font-size-300;
+  transition: border-color 0.2s ease;
+  resize: none;
+
+  &::placeholder {
+    color: var(--color-gray-500);
+  }
+
+  &:focus-visible {
+    outline: none;
+    border-color: var(--color-primary-500);
+  }
+
+  &--textarea {
+    min-height: 3.5rem;
+  }
+}
+
+.footer__form-note {
+  font-size: $font-size-100;
+  color: var(--color-gray-500);
+}
+
+.footer__form-submit {
+  align-self: flex-start;
+  margin-top: $space-200;
 }
 
 .footer__divider {

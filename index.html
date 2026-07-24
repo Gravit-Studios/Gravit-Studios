@@ -287,20 +287,46 @@
       </section>
     </main>
 
-    <!-- CONTATO + FOOTER — bloco final em fundo "espaço profundo" -->
+    <!-- CONTATO + FOOTER — bloco final em fundo "espaço profundo", com título
+         grande à esquerda e formulário de orçamento à direita -->
     <footer class="footer" id="contato">
       <div class="starmap" data-starmap-footer></div>
+
       <div class="footer__cta section__inner">
-        <div class="footer__question-block">
+        <div class="footer__intro">
           <span class="section__eyebrow reveal">Contato</span>
-          <h2 class="footer__question reveal">
-            Quer colocar seu projeto em órbita com a gente?
-          </h2>
+          <h2 class="footer__big-title reveal">Orçamento</h2>
+
+          <div class="footer__info reveal">
+            <span class="footer__info-label">E-mail</span>
+            <a class="footer__info-value" href="mailto:gravitstudios@gmail.com">gravitstudios@gmail.com</a>
+          </div>
         </div>
-        <a class="footer__email reveal" href="mailto:gravitstudios@gmail.com">
-          gravitstudios@gmail.com
-          <span class="footer__email-arrow" aria-hidden="true">&rarr;</span>
-        </a>
+
+        <form class="footer__form reveal" data-contact-form novalidate>
+          <h3 class="footer__form-title">Vamos conversar sobre o seu projeto?</h3>
+
+          <label class="footer__field">
+            <span class="footer__field-label">Nome</span>
+            <input class="footer__field-input" type="text" name="name" autocomplete="name" required />
+          </label>
+
+          <label class="footer__field">
+            <span class="footer__field-label">E-mail</span>
+            <input class="footer__field-input" type="email" name="email" autocomplete="email" required />
+          </label>
+
+          <label class="footer__field">
+            <span class="footer__field-label">Conte sobre o projeto</span>
+            <textarea class="footer__field-input footer__field-input--textarea" name="message" rows="2" required></textarea>
+          </label>
+
+          <p class="footer__form-note">
+            Ao enviar, seu app de e-mail vai abrir com essa mensagem pronta pra gente.
+          </p>
+
+          <button class="btn btn--primary footer__form-submit" type="submit">Pedir orçamento</button>
+        </form>
       </div>
 
       <div class="footer__divider section__inner"></div>

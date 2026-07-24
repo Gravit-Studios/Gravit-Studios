@@ -8,6 +8,7 @@ import { initStrategyGravity } from './strategy-gravity.js';
 import { renderStarmap } from './starmap.js';
 import { initWarpLines } from './warp-lines.js';
 import { initScrollFx } from './scroll-fx.js';
+import { initContactForm } from './contact-form.js';
 
 initReveal();
 
@@ -39,3 +40,6 @@ const warpController = warpLinesContainer ? initWarpLines(warpLinesContainer) : 
 const warpSection = warpLinesContainer?.closest('.warp');
 
 initScrollFx({ warp: warpController ? { controller: warpController, section: warpSection } : undefined });
+
+const contactForm = document.querySelector('[data-contact-form]');
+if (contactForm) initContactForm(contactForm);
