@@ -47,6 +47,30 @@
   filter: blur(18px);
 }
 
+// No footer o mapa fica sozinho no fundo (sem glows/starfield por cima),
+// então recebe um pouco mais de presença — ainda suave, só mais visível.
+[data-starmap-footer] {
+  .starmap__ring {
+    stroke: rgba($color-gray-100, 0.7);
+  }
+
+  .starmap__spoke {
+    stroke: rgba($color-gray-100, 0.2);
+  }
+
+  .starmap__tick {
+    stroke: rgba($color-gray-100, 0.5);
+  }
+
+  .starmap__node {
+    fill: rgba($color-gray-100, 0.8);
+  }
+
+  .starmap__core {
+    fill: rgba($color-primary-300, 0.45);
+  }
+}
+
 @keyframes starmap-spin {
   to { transform: rotate(360deg); }
 }
