@@ -67,29 +67,45 @@
   stroke-width: 1;
 }
 
-// Leve flutuação contínua, independente da entrada por scroll (que fica no
+// Aproximação contínua, independente da entrada por scroll (que fica no
 // grupo pai .about__planet, via .reveal) — soma-se a ela sem conflitar.
+// Os planetas das pontas "respiram" em direção ao centro e voltam; o
+// central pulsa em resposta, como se sentisse a atração dos outros dois.
 .about__planet-bob {
   transform-box: fill-box;
   transform-origin: center;
-  animation: about-bob 7s ease-in-out infinite;
+  animation-duration: 6s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
 
   &--a {
-    animation-delay: -1s;
+    animation-name: about-approach-left;
   }
 
   &--b {
-    animation-delay: -3.5s;
+    animation-name: about-approach-right;
+    animation-delay: -3s;
   }
 
   &--c {
-    animation-delay: -5s;
+    animation-name: about-pulse-center;
+    animation-delay: -1.5s;
   }
 }
 
-@keyframes about-bob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-0.4rem); }
+@keyframes about-approach-left {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(0.9rem); }
+}
+
+@keyframes about-approach-right {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-0.9rem); }
+}
+
+@keyframes about-pulse-center {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
 }
 
 .about__legend {
