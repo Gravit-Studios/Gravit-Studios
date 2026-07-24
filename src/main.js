@@ -10,6 +10,7 @@ import { initScrollFx } from './scroll-fx.js';
 import { initContactForm } from './contact-form.js';
 import { initVortex } from './vortex.js';
 import { initOrbitBelt } from './orbit-belt.js';
+import { initMeridian } from './meridian.js';
 
 initReveal();
 
@@ -43,3 +44,6 @@ if (contactForm) initContactForm(contactForm);
 
 const vortex = document.querySelector('[data-vortex]');
 if (vortex) initVortex(vortex);
+
+const meridian = document.querySelector('[data-meridian]');
+if (meridian) initMeridian(meridian);

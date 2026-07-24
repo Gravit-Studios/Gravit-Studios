@@ -1,0 +1,44 @@
+@use "../abstracts" as *;
+
+.meridian {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.meridian__svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(150vw, 1500px);
+  height: min(105vw, 1050px);
+  transform: translate(-50%, -50%);
+}
+
+.meridian__line {
+  stroke: rgba($color-gray-100, 0.14);
+  stroke-width: 1;
+}
+
+.meridian__ring {
+  fill: none;
+  stroke: rgba($color-gray-100, 0.4);
+  stroke-width: 1;
+
+  &--faint {
+    stroke: rgba($color-gray-100, 0.22);
+    opacity: 0.7;
+  }
+}
+
+.meridian__dot {
+  fill: rgba($color-gray-100, 0.55);
+}
+
+.meridian__dot--accent {
+  fill: var(--color-primary-400);
+  filter: drop-shadow(0 0 4px rgba($color-primary-500, 0.8));
+}

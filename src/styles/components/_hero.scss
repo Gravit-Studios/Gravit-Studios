@@ -15,6 +15,40 @@
   isolation: isolate;
 }
 
+// Linhas verticais criando colunas, como uma grade de layout por trás do
+// conteúdo (referência: composições em grid com réguas finas).
+.hero__grid-lines {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  pointer-events: none;
+
+  span {
+    flex: 1;
+    border-right: 1px solid rgba($color-white, 0.06);
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+}
+
+.hero__crosshair {
+  position: absolute;
+  z-index: 0;
+  left: 8%;
+  bottom: 22%;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: rgba($color-white, 0.2);
+  pointer-events: none;
+
+  @include breakpoint-up(lg) {
+    left: 12%;
+  }
+}
+
 .hero__canvas {
   position: absolute;
   inset: 0;
