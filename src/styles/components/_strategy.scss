@@ -138,27 +138,33 @@
   opacity: 0.5;
 }
 
-// Cada cubo parte da sua posição espalhada e "se junta" ao centro quando o
-// passo correspondente fica ativo, ganhando cor e destaque.
+// Preenchimento do soquete central: vai ficando mais opaco conforme os
+// quatro passos são visitados durante o scroll, como se estivessem se
+// conectando num só (ver strategy-scroll.js).
+.strategy__cube-fill {
+  fill: var(--color-primary-500);
+  opacity: 0;
+  filter: blur(6px);
+  transition: opacity 0.6s ease;
+}
+
+// Cada cubo percorre a própria linha continuamente conforme o scroll (o
+// transform é escrito a cada frame via JS, por isso não tem transition
+// aqui — ganharia atraso e desalinharia da posição real na linha).
 .strategy__cube {
   transform: translate(0, 0) scale(1);
-  transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
 
   use {
     fill: none;
     stroke: var(--border-strong);
     stroke-width: 1.5;
-    transition: fill 0.5s ease, stroke 0.5s ease, filter 0.5s ease;
+    transition: fill 0.4s ease, stroke 0.4s ease, filter 0.4s ease;
   }
 
-  &.is-active {
-    transform: translate(var(--join-x), var(--join-y)) scale(1.15);
-
-    use {
-      fill: rgba($color-primary-500, 0.16);
-      stroke: var(--color-primary-500);
-      filter: drop-shadow(0 0 10px rgba($color-primary-500, 0.55));
-    }
+  &.is-active use {
+    fill: rgba($color-primary-500, 0.18);
+    stroke: var(--color-primary-500);
+    filter: drop-shadow(0 0 10px rgba($color-primary-500, 0.55));
   }
 }
 
