@@ -1,9 +1,9 @@
-// Em vez de "saltar" para o centro quando o passo vira ativo, cada cubo
-// percorre a própria linha tracejada continuamente conforme o scroll: a
-// proximidade do bloco de texto com o centro da viewport vira a distância
-// percorrida ao longo da linha (0 = no canto, 1 = encaixado no centro).
-// O soquete central vai se preenchendo conforme os quatro passos já
-// visitados se conectam, como se os quatro virassem um só no final.
+// Cada cubo percorre a própria linha tracejada conforme o bloco de texto
+// correspondente se aproxima do centro da viewport durante o scroll. O
+// progresso é monotônico (usa o máximo já alcançado): uma vez que o cubo
+// chega ao centro, ele fica lá — não volta pro canto se você rolar mais.
+// Assim os quatro vão se acumulando no centro, um a um, até preencherem o
+// soquete central juntos.
 export function initStrategyScroll(root) {
   const items = Array.from(root.querySelectorAll('[data-strategy-item]'));
   const cubes = Array.from(root.querySelectorAll('[data-layer]'));
@@ -19,6 +19,7 @@ export function initStrategyScroll(root) {
     el,
     joinX: parseFloat(el.style.getPropertyValue('--join-x')) || 0,
     joinY: parseFloat(el.style.getPropertyValue('--join-y')) || 0,
+    maxProgress: 0,
     visited: false,
   }));
 
@@ -34,21 +35,26 @@ export function initStrategyScroll(root) {
     const viewportCenter = window.innerHeight / 2;
     let closestIndex = 0;
     let closestDistance = Infinity;
-
-    items.forEach((item, i) => {
+    const distances = items.map((item) => {
       const rect = item.getBoundingClientRect();
       const itemCenter = rect.top + rect.height / 2;
-      const distance = Math.abs(itemCenter - viewportCenter);
+      return Math.abs(itemCenter - viewportCenter);
+    });
 
+    distances.forEach((distance, i) => {
       if (distance < closestDistance) {
         closestDistance = distance;
         closestIndex = i;
       }
+    });
 
-      const progress = Math.max(0, 1 - distance / (window.innerHeight * 0.6));
+    items.forEach((item, i) => {
+      const instantProgress = Math.max(0, 1 - distances[i] / (window.innerHeight * 0.6));
       const cube = cubeData[i];
+      cube.maxProgress = Math.max(cube.maxProgress, instantProgress);
+      const progress = cube.maxProgress;
 
-      item.classList.toggle('is-active', progress > 0.5);
+      item.classList.toggle('is-active', closestIndex === i);
       cube.el.classList.toggle('is-active', progress > 0.5);
 
       if (progress > 0.85) cube.visited = true;

@@ -1,8 +1,8 @@
 // Parallax leve entre seções: elementos marcados com [data-parallax] se
 // deslocam a uma fração da velocidade do scroll (via data-parallax-speed),
-// dando sensação de profundidade. Também conduz o progresso da seção de
-// "passagem" (linhas de warp), ligando sua animação diretamente ao scroll.
-export function initScrollFx({ warp } = {}) {
+// dando sensação de profundidade. Também conduz o progresso de uma seção
+// "scrubbed" (ex.: o portal), ligando sua animação diretamente ao scroll.
+export function initScrollFx({ scrubbed } = {}) {
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (prefersReducedMotion) return;
 
@@ -25,12 +25,12 @@ export function initScrollFx({ warp } = {}) {
       el.style.transform = axis === 'x' ? `translateX(${offset.toFixed(1)}px)` : `translateY(${offset.toFixed(1)}px)`;
     }
 
-    if (warp?.controller && warp.section) {
-      const rect = warp.section.getBoundingClientRect();
+    if (scrubbed?.controller && scrubbed.section) {
+      const rect = scrubbed.section.getBoundingClientRect();
       const total = rect.height + window.innerHeight;
       const scrolled = window.innerHeight - rect.top;
       const progress = Math.min(1, Math.max(0, scrolled / total));
-      warp.controller.setProgress(progress);
+      scrubbed.controller.setProgress(progress);
     }
 
     ticking = false;

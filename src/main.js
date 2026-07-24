@@ -5,10 +5,9 @@ import { initReveal } from './reveal.js';
 import { initPortfolioCarousel } from './portfolio-carousel.js';
 import { initStrategyScroll } from './strategy-scroll.js';
 import { renderStarmap } from './starmap.js';
-import { initWarpLines } from './warp-lines.js';
+import { initPortal } from './portal.js';
 import { initScrollFx } from './scroll-fx.js';
 import { initContactForm } from './contact-form.js';
-import { initVortex } from './vortex.js';
 import { initOrbitBelt } from './orbit-belt.js';
 import { initMeridian } from './meridian.js';
 
@@ -30,20 +29,18 @@ document.querySelectorAll('[data-starmap], [data-starmap-footer]').forEach((el, 
   renderStarmap(el, { seed: i + 1 });
 });
 
-const warpLinesContainer = document.querySelector('[data-warp-lines]');
-const warpController = warpLinesContainer ? initWarpLines(warpLinesContainer) : undefined;
-const warpSection = warpLinesContainer?.closest('.warp');
+const portalSection = document.querySelector('[data-portal]');
+const portalController = portalSection ? initPortal(portalSection) : undefined;
 
 const orbitBelt = document.querySelector('[data-orbit-belt]');
 if (orbitBelt) initOrbitBelt(orbitBelt);
 
-initScrollFx({ warp: warpController ? { controller: warpController, section: warpSection } : undefined });
+initScrollFx({
+  scrubbed: portalController ? { controller: portalController, section: portalSection } : undefined,
+});
 
 const contactForm = document.querySelector('[data-contact-form]');
 if (contactForm) initContactForm(contactForm);
-
-const vortex = document.querySelector('[data-vortex]');
-if (vortex) initVortex(vortex);
 
 const meridian = document.querySelector('[data-meridian]');
 if (meridian) initMeridian(meridian);
