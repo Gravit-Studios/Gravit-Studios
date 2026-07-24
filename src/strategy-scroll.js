@@ -49,7 +49,10 @@ export function initStrategyScroll(root) {
     });
 
     items.forEach((item, i) => {
-      const instantProgress = Math.max(0, 1 - distances[i] / (window.innerHeight * 0.6));
+      // Zona estreita: só ganha progresso quando o bloco está de fato perto
+      // do centro da tela (não basta a seção ter só entrado na viewport).
+      const linear = Math.max(0, 1 - distances[i] / (window.innerHeight * 0.28));
+      const instantProgress = linear * linear;
       const cube = cubeData[i];
       cube.maxProgress = Math.max(cube.maxProgress, instantProgress);
       const progress = cube.maxProgress;
