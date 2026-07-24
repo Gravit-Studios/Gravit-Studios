@@ -8,7 +8,6 @@ import { renderStarmap } from './starmap.js';
 import { initPortal } from './portal.js';
 import { initScrollFx } from './scroll-fx.js';
 import { initContactForm } from './contact-form.js';
-import { initOrbitBelt } from './orbit-belt.js';
 import { initMeridian } from './meridian.js';
 
 initReveal();
@@ -31,9 +30,6 @@ document.querySelectorAll('[data-starmap], [data-starmap-footer]').forEach((el, 
 
 const portalSection = document.querySelector('[data-portal]');
 const portalController = portalSection ? initPortal(portalSection) : undefined;
-
-const orbitBelt = document.querySelector('[data-orbit-belt]');
-if (orbitBelt) initOrbitBelt(orbitBelt);
 
 initScrollFx({
   scrubbed: portalController ? { controller: portalController, section: portalSection } : undefined,

@@ -1,7 +1,7 @@
-// "Portal" — passagem em wireframe entre o Portfolio e o Sobre: dois funis
-// (malha de anéis + meridianos) conectados por um torus central, com um
-// ponto (a Gravit) que atravessa de cima a baixo conforme o scroll — como
-// se ela entrasse no processo por cima e saísse concluído embaixo.
+// "Portal" — duas elipses verticais sobrepostas (traço sólido + tracejado,
+// como um par de vesica piscis), cada uma com uma esfera que viaja da
+// lateral até o centro conforme o scroll. Quando as duas se encontram no
+// meio, um núcleo acende na cor primária — a Gravit unindo os dois lados.
 const SVG_NS = 'http://www.w3.org/2000/svg';
 
 function el(name, attrs = {}) {
@@ -12,121 +12,102 @@ function el(name, attrs = {}) {
   return node;
 }
 
-function lerp(a, b, t) {
-  return a + (b - a) * t;
+// Ponto de uma elipse rotacionada, em coordenadas do SVG.
+function ellipsePoint(cx, cy, rx, ry, rotRad, t) {
+  const x0 = rx * Math.cos(t);
+  const y0 = ry * Math.sin(t);
+  return {
+    x: cx + x0 * Math.cos(rotRad) - y0 * Math.sin(rotRad),
+    y: cy + x0 * Math.sin(rotRad) + y0 * Math.cos(rotRad),
+  };
 }
 
-// Malha de um funil: anéis horizontais (elipses) + linhas meridianas
-// verticais conectando-os, do raio largo (topR) ao estreito (narrowR).
-function buildFunnel(group, { cx, wideY, narrowY, wideR, narrowR, squash, rows = 7, cols = 14, flare = 'in' }) {
-  const rings = [];
-
-  for (let i = 0; i < rows; i += 1) {
-    const t = i / (rows - 1);
-    const y = lerp(wideY, narrowY, t);
-    const ease = flare === 'in' ? t * t : 1 - (1 - t) * (1 - t);
-    const r = lerp(wideR, narrowR, ease);
-    const ry = r * squash;
-    rings.push({ y, r, ry });
-    group.appendChild(el('ellipse', { cx, cy: y, rx: r, ry, class: 'portal__ring' }));
+function buildEllipsePath(cx, cy, rx, ry, rotDeg, steps = 120) {
+  const rotRad = (rotDeg * Math.PI) / 180;
+  let d = '';
+  for (let i = 0; i <= steps; i += 1) {
+    const t = (i / steps) * Math.PI * 2;
+    const { x, y } = ellipsePoint(cx, cy, rx, ry, rotRad, t);
+    d += `${i === 0 ? 'M' : 'L'}${x.toFixed(1)},${y.toFixed(1)} `;
   }
-
-  for (let j = 0; j < cols; j += 1) {
-    const angle = (j / cols) * Math.PI * 2;
-    const points = rings
-      .map(({ y, r, ry }) => `${(cx + Math.cos(angle) * r).toFixed(1)},${(y + Math.sin(angle) * ry).toFixed(1)}`)
-      .join(' ');
-    group.appendChild(el('polyline', { points, class: 'portal__meridian' }));
-  }
+  return d;
 }
 
 export function initPortal(container) {
-  const width = 900;
-  const height = 900;
+  const width = 1000;
+  const height = 1300;
   const cx = width / 2;
+  const cy = height / 2;
 
-  const topWideY = 70;
-  const neckTopY = 400;
-  const ringY = 450;
-  const neckBottomY = 500;
-  const bottomWideY = 830;
+  const rx = 235;
+  const ry = 560;
+  const tilt = 7;
 
-  const wideR = 210;
-  const neckR = 50;
+  const leftCx = cx - 170;
+  const rightCx = cx + 170;
 
   const svg = el('svg', { viewBox: `0 0 ${width} ${height}`, class: 'portal__svg', 'aria-hidden': 'true' });
+  const group = el('g', { class: 'portal__group' });
+  svg.appendChild(group);
 
-  // Linhas diagonais guia, formando o "X" atrás dos funis.
-  const guides = el('g', { class: 'portal__guides' });
-  [[0, 0], [width, 0]].forEach(([x, y]) => {
-    guides.appendChild(el('line', { x1: cx, y1: ringY, x2: x, y2: y, class: 'portal__guide' }));
-  });
-  [[0, height], [width, height]].forEach(([x, y]) => {
-    guides.appendChild(el('line', { x1: cx, y1: ringY, x2: x, y2: y, class: 'portal__guide' }));
-  });
-  svg.appendChild(guides);
+  const leftGroup = el('g', { class: 'portal__oval', 'data-parallax': '', 'data-parallax-speed': '0.05' });
+  leftGroup.appendChild(el('path', { d: buildEllipsePath(leftCx, cy, rx, ry, -tilt), class: 'portal__oval-line' }));
+  leftGroup.appendChild(
+    el('path', { d: buildEllipsePath(leftCx, cy, rx * 1.08, ry * 1.04, -tilt - 3), class: 'portal__oval-line portal__oval-line--dashed' })
+  );
+  group.appendChild(leftGroup);
 
-  const topFunnel = el('g', {
-    class: 'portal__funnel',
-    'data-parallax': '',
-    'data-parallax-speed': '0.06',
-  });
-  buildFunnel(topFunnel, {
-    cx,
-    wideY: topWideY,
-    narrowY: neckTopY,
-    wideR,
-    narrowR: neckR,
-    squash: 0.34,
-    flare: 'in',
-  });
-  svg.appendChild(topFunnel);
+  const rightGroup = el('g', { class: 'portal__oval', 'data-parallax': '', 'data-parallax-speed': '-0.05' });
+  rightGroup.appendChild(el('path', { d: buildEllipsePath(rightCx, cy, rx, ry, tilt), class: 'portal__oval-line' }));
+  rightGroup.appendChild(
+    el('path', { d: buildEllipsePath(rightCx, cy, rx * 1.08, ry * 1.04, tilt + 3), class: 'portal__oval-line portal__oval-line--dashed' })
+  );
+  group.appendChild(rightGroup);
 
-  const bottomFunnel = el('g', {
-    class: 'portal__funnel',
-    'data-parallax': '',
-    'data-parallax-speed': '-0.06',
-  });
-  buildFunnel(bottomFunnel, {
-    cx,
-    wideY: neckBottomY,
-    narrowY: bottomWideY,
-    wideR: neckR,
-    narrowR: wideR,
-    squash: 0.34,
-    flare: 'out',
-  });
-  svg.appendChild(bottomFunnel);
+  // Núcleo central — acende quando as duas esferas se encontram.
+  const core = el('circle', { cx, cy, r: 30, class: 'portal__core' });
+  group.appendChild(core);
 
-  // Torus central — o anel onde a Gravit "conecta" as duas pontas.
-  const ring = el('g', { class: 'portal__torus' });
-  ring.appendChild(el('ellipse', { cx, cy: ringY, rx: 118, ry: 40, class: 'portal__torus-outer' }));
-  ring.appendChild(el('ellipse', { cx, cy: ringY, rx: 58, ry: 18, class: 'portal__torus-inner' }));
-  svg.appendChild(ring);
-
-  // O ponto da Gravit, atravessando o portal conforme o scroll.
-  const traveler = el('circle', { cx, cy: topWideY - 60, r: 14, class: 'portal__traveler' });
-  svg.appendChild(traveler);
+  const leftTraveler = el('circle', { r: 14, class: 'portal__traveler portal__traveler--left' });
+  const rightTraveler = el('circle', { r: 14, class: 'portal__traveler portal__traveler--right' });
+  group.appendChild(leftTraveler);
+  group.appendChild(rightTraveler);
 
   container.appendChild(svg);
 
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const startY = topWideY - 60;
-  const endY = bottomWideY + 60;
+  const leftTiltRad = (-tilt * Math.PI) / 180;
+  const rightTiltRad = (tilt * Math.PI) / 180;
 
+  // Esfera esquerda: começa no ponto mais à esquerda da própria elipse (t=π)
+  // e viaja até o ponto mais à direita (t=0), que cai perto do cruzamento
+  // central com a elipse direita. A direita faz o caminho espelhado.
+  function place(progress) {
+    const tLeft = Math.PI - progress * Math.PI;
+    const tRight = progress * Math.PI;
+
+    const left = ellipsePoint(leftCx, cy, rx, ry, leftTiltRad, tLeft);
+    const right = ellipsePoint(rightCx, cy, rx, ry, rightTiltRad, tRight);
+
+    leftTraveler.setAttribute('cx', left.x.toFixed(1));
+    leftTraveler.setAttribute('cy', left.y.toFixed(1));
+    rightTraveler.setAttribute('cx', right.x.toFixed(1));
+    rightTraveler.setAttribute('cy', right.y.toFixed(1));
+
+    const meet = Math.max(0, (progress - 0.7) / 0.3);
+    core.style.setProperty('--meet', meet.toFixed(2));
+  }
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (prefersReducedMotion) {
-    traveler.setAttribute('cy', ringY);
+    place(0.5);
     return;
   }
 
+  place(0);
+
   return {
     setProgress(progress) {
-      const y = lerp(startY, endY, progress);
-      traveler.setAttribute('cy', y.toFixed(1));
-
-      const distanceFromRing = Math.abs(y - ringY);
-      const glow = Math.max(0, 1 - distanceFromRing / 140);
-      traveler.style.setProperty('--glow', glow.toFixed(2));
+      place(progress);
     },
   };
 }
