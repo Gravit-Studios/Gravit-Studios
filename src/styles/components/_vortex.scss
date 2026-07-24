@@ -1,0 +1,59 @@
+@use "../abstracts" as *;
+
+// Vórtice em "oito" no fundo do banner — muito sutil, para não competir
+// com o texto por cima.
+.vortex {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.vortex__svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(120vw, 1400px);
+  height: min(120vw, 1400px);
+  transform: translate(-50%, -50%);
+}
+
+.vortex__group {
+  transform-origin: 450px 280px;
+  animation: vortex-spin 240s linear infinite;
+}
+
+.vortex__loop {
+  fill: none;
+  stroke: var(--color-primary-400);
+  stroke-width: 1;
+}
+
+.vortex__core {
+  fill: var(--color-primary-300);
+  filter: blur(3px);
+  opacity: 0.8;
+}
+
+.vortex__traveler {
+  filter: blur(0.5px);
+
+  &--client {
+    fill: var(--color-primary-300);
+  }
+
+  &--company {
+    fill: var(--color-tertiary-300);
+  }
+}
+
+@keyframes vortex-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vortex__group {
+    animation: none;
+  }
+}

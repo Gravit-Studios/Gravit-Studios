@@ -9,6 +9,7 @@ import { renderStarmap } from './starmap.js';
 import { initWarpLines } from './warp-lines.js';
 import { initScrollFx } from './scroll-fx.js';
 import { initContactForm } from './contact-form.js';
+import { initVortex } from './vortex.js';
 
 initReveal();
 
@@ -43,3 +44,6 @@ initScrollFx({ warp: warpController ? { controller: warpController, section: war
 
 const contactForm = document.querySelector('[data-contact-form]');
 if (contactForm) initContactForm(contactForm);
+
+const vortex = document.querySelector('[data-vortex]');
+if (vortex) initVortex(vortex);
