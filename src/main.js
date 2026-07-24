@@ -9,6 +9,7 @@ import { initWarpLines } from './warp-lines.js';
 import { initScrollFx } from './scroll-fx.js';
 import { initContactForm } from './contact-form.js';
 import { initVortex } from './vortex.js';
+import { initOrbitBelt } from './orbit-belt.js';
 
 initReveal();
 
@@ -31,6 +32,9 @@ document.querySelectorAll('[data-starmap], [data-starmap-footer]').forEach((el, 
 const warpLinesContainer = document.querySelector('[data-warp-lines]');
 const warpController = warpLinesContainer ? initWarpLines(warpLinesContainer) : undefined;
 const warpSection = warpLinesContainer?.closest('.warp');
+
+const orbitBelt = document.querySelector('[data-orbit-belt]');
+if (orbitBelt) initOrbitBelt(orbitBelt);
 
 initScrollFx({ warp: warpController ? { controller: warpController, section: warpSection } : undefined });
 

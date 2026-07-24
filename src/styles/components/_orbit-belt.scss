@@ -1,0 +1,86 @@
+@use "../abstracts" as *;
+
+// Faixa orbital — seção de transição decorativa, corpos em traço fino que
+// se movem em velocidades diferentes conforme o scroll (ver scroll-fx.js).
+.orbit-belt {
+  position: relative;
+  height: 22rem;
+  overflow: hidden;
+  background-color: var(--surface-base);
+
+  @include breakpoint-up(lg) {
+    height: 26rem;
+  }
+}
+
+.orbit-belt__svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(220%, 2400px);
+  height: 100%;
+  transform: translate(-50%, -50%);
+}
+
+.orbit-belt__baseline {
+  stroke: var(--border-subtle);
+  stroke-width: 1;
+  stroke-dasharray: 2 8;
+}
+
+.orbit-belt__outline {
+  fill: none;
+  stroke: var(--border-strong);
+  stroke-width: 1.5;
+}
+
+.orbit-belt__dashed-ring {
+  fill: none;
+  stroke: var(--color-primary-400);
+  stroke-width: 1;
+  stroke-dasharray: 4 6;
+  opacity: 0.6;
+}
+
+.orbit-belt__crescent-base {
+  fill: var(--color-tertiary-300);
+}
+
+.orbit-belt__crescent-bite {
+  fill: var(--surface-base);
+}
+
+.orbit-belt__donut {
+  fill: none;
+  stroke: var(--color-tertiary-300);
+  stroke-width: 12;
+}
+
+.orbit-belt__dot {
+  fill: var(--color-gray-400);
+}
+
+// Par "cliente/empresa" — respiram em direção um ao outro continuamente.
+.orbit-belt__venn circle:first-child {
+  animation: orbit-belt-approach-a 8s ease-in-out infinite;
+}
+
+.orbit-belt__venn circle:last-child {
+  animation: orbit-belt-approach-b 8s ease-in-out infinite;
+}
+
+@keyframes orbit-belt-approach-a {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(0.6rem); }
+}
+
+@keyframes orbit-belt-approach-b {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-0.6rem); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit-belt__venn circle {
+    animation: none;
+  }
+}

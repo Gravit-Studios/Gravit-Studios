@@ -9,6 +9,7 @@ export function initScrollFx({ warp } = {}) {
   const parallaxEls = Array.from(document.querySelectorAll('[data-parallax]')).map((el) => ({
     el,
     speed: parseFloat(el.dataset.parallaxSpeed || '0.1'),
+    axis: el.dataset.parallaxAxis === 'x' ? 'x' : 'y',
   }));
 
   let ticking = false;
@@ -16,11 +17,12 @@ export function initScrollFx({ warp } = {}) {
   function update() {
     const viewportCenter = window.innerHeight / 2;
 
-    for (const { el, speed } of parallaxEls) {
+    for (const { el, speed, axis } of parallaxEls) {
       const rect = el.getBoundingClientRect();
-      const elCenter = rect.top + rect.height / 2;
-      const offset = (viewportCenter - elCenter) * speed;
-      el.style.transform = `translateY(${offset.toFixed(1)}px)`;
+      const elCenter = axis === 'x' ? rect.left + rect.width / 2 : rect.top + rect.height / 2;
+      const viewportRef = axis === 'x' ? window.innerWidth / 2 : viewportCenter;
+      const offset = (viewportRef - elCenter) * speed;
+      el.style.transform = axis === 'x' ? `translateX(${offset.toFixed(1)}px)` : `translateY(${offset.toFixed(1)}px)`;
     }
 
     if (warp?.controller && warp.section) {
