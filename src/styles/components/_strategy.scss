@@ -153,6 +153,8 @@
 // aqui — ganharia atraso e desalinharia da posição real na linha).
 .strategy__cube {
   transform: translate(0, 0) scale(1);
+  transform-box: fill-box;
+  transform-origin: center;
 
   use {
     fill: none;

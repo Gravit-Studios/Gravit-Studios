@@ -1,9 +1,9 @@
-// Cada cubo percorre a própria linha tracejada conforme o bloco de texto
-// correspondente se aproxima do centro da viewport durante o scroll. O
-// progresso é monotônico (usa o máximo já alcançado): uma vez que o cubo
-// chega ao centro, ele fica lá — não volta pro canto se você rolar mais.
-// Assim os quatro vão se acumulando no centro, um a um, até preencherem o
-// soquete central juntos.
+// A "jornada" inteira da narrativa (do topo do bloco 01 até o fim do bloco
+// 04) vira um progresso único de 0 a 1, diretamente ligado à posição atual
+// do scroll — sem depender da distância instantânea de cada bloco ao
+// centro (isso é o que causava o "bater e voltar"). Cada cubo ocupa uma
+// fatia igual dessa jornada: entra em 0, chega a 1 e fica lá enquanto você
+// não rolar de volta pra trás — e reverte de verdade se você subir.
 export function initStrategyScroll(root) {
   const items = Array.from(root.querySelectorAll('[data-strategy-item]'));
   const cubes = Array.from(root.querySelectorAll('[data-layer]'));
@@ -14,13 +14,12 @@ export function initStrategyScroll(root) {
   if (!items.length || items.length !== cubes.length) return;
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const count = items.length;
 
   const cubeData = cubes.map((el) => ({
     el,
     joinX: parseFloat(el.style.getPropertyValue('--join-x')) || 0,
     joinY: parseFloat(el.style.getPropertyValue('--join-y')) || 0,
-    maxProgress: 0,
-    visited: false,
   }));
 
   function setLabel(index) {
@@ -32,47 +31,33 @@ export function initStrategyScroll(root) {
   }
 
   function updateFromScroll() {
+    const scrollY = window.scrollY;
     const viewportCenter = window.innerHeight / 2;
-    let closestIndex = 0;
-    let closestDistance = Infinity;
-    const distances = items.map((item) => {
-      const rect = item.getBoundingClientRect();
-      const itemCenter = rect.top + rect.height / 2;
-      return Math.abs(itemCenter - viewportCenter);
-    });
 
-    distances.forEach((distance, i) => {
-      if (distance < closestDistance) {
-        closestDistance = distance;
-        closestIndex = i;
-      }
-    });
+    const firstRect = items[0].getBoundingClientRect();
+    const lastRect = items[count - 1].getBoundingClientRect();
+    const journeyTop = firstRect.top + scrollY;
+    const journeyBottom = lastRect.bottom + scrollY;
+    const journeyHeight = Math.max(1, journeyBottom - journeyTop);
+
+    const overall = Math.min(1, Math.max(0, (scrollY + viewportCenter - journeyTop) / journeyHeight));
+    const closestIndex = Math.min(count - 1, Math.floor(overall * count));
 
     items.forEach((item, i) => {
-      // Zona estreita: só ganha progresso quando o bloco está de fato perto
-      // do centro da tela (não basta a seção ter só entrado na viewport).
-      const linear = Math.max(0, 1 - distances[i] / (window.innerHeight * 0.28));
-      const instantProgress = linear * linear;
+      const zoneProgress = Math.min(1, Math.max(0, overall * count - i));
       const cube = cubeData[i];
-      cube.maxProgress = Math.max(cube.maxProgress, instantProgress);
-      const progress = cube.maxProgress;
 
       item.classList.toggle('is-active', closestIndex === i);
-      cube.el.classList.toggle('is-active', progress > 0.5);
-
-      if (progress > 0.85) cube.visited = true;
+      cube.el.classList.toggle('is-active', zoneProgress > 0.5);
 
       if (!prefersReducedMotion) {
-        cube.el.style.transform = `translate(${cube.joinX * progress}px, ${cube.joinY * progress}px) scale(${1 + progress * 0.15})`;
+        cube.el.style.transform = `translate(${cube.joinX * zoneProgress}px, ${cube.joinY * zoneProgress}px) scale(${1 + zoneProgress * 0.15})`;
       }
     });
 
     setLabel(closestIndex);
 
-    if (fill) {
-      const connection = cubeData.filter((c) => c.visited).length / cubeData.length;
-      fill.style.opacity = connection.toFixed(2);
-    }
+    if (fill) fill.style.opacity = overall.toFixed(2);
   }
 
   items.forEach((item) => {
