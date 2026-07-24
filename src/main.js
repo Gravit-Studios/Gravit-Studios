@@ -22,7 +22,10 @@ if (portfolio) initPortfolioCarousel(portfolio);
 
 const strategy = document.querySelector('[data-strategy]');
 if (strategy) {
-  const gravityCanvas = strategy.querySelector('[data-strategy-gravity]');
+  // A montagem em camadas fica oculta (via CSS) abaixo do breakpoint lg —
+  // não faz sentido gastar ciclos com o canvas de partículas nesse caso.
+  const stackVisible = window.matchMedia('(min-width: 1024px)').matches;
+  const gravityCanvas = stackVisible ? strategy.querySelector('[data-strategy-gravity]') : null;
   const gravity = gravityCanvas ? initStrategyGravity(gravityCanvas) : undefined;
   initStrategyScroll(strategy, { gravity });
 }

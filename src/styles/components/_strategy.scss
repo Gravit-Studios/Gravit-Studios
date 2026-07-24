@@ -90,14 +90,14 @@
 // Montagem em camadas — quadrados empilhados que se destacam conforme o
 // passo ativo, ligados por uma linha tracejada, com um rótulo lateral que
 // acompanha o conteúdo do passo em foco.
+// A montagem em camadas é um reforço visual pensado para a coluna sticky
+// do desktop; em telas menores ela só repetiria o que a narrativa já diz
+// ocupando bastante altura, então fica oculta até o breakpoint lg.
 .strategy__stack {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: $space-600;
-  padding-block: $space-700;
+  display: none;
 
   @include breakpoint-up(lg) {
+    display: flex;
     position: sticky;
     top: 6rem;
     flex-direction: row;
